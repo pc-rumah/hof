@@ -15,7 +15,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <a href="{{ url()->previous() }}" type="button" class="mt-2 btn btn-warning">Back</a>
+                        <a href="{{ route('tambahfoto.index') }}" type="button" class="mt-2 btn btn-warning">Back</a>
                         <!-- General Form Elements -->
                         <form action="{{ route('tambahfoto.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
