@@ -112,7 +112,11 @@
         });
     </script>
 
-
+    <script>
+        setTimeout(() => {
+            $('.alert').fadeOut()
+        }, 5000);
+    </script>
 
 </body>
 

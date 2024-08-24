@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Foto;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class TambahFotoController extends Controller
 {
@@ -13,7 +15,8 @@ class TambahFotoController extends Controller
      */
     public function index()
     {
-        return view('halaman.pengguna.tambah-foto.index');
+        $data = Foto::where('user_id', Auth::id())->get();
+        return view('halaman.pengguna.tambah-foto.index', compact('data'));
     }
 
     /**
@@ -79,7 +82,30 @@ class TambahFotoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Ambil data foto berdasarkan ID
+        $foto = Foto::find($id);
+
+        // Pastikan data foto ditemukan
+        if (!$foto) {
+            abort(404, 'Foto tidak ditemukan');
+        }
+
+        // Current user
+        $user = auth()->user();
+
+        // Authorization: pastikan user yang sedang login adalah pemilik foto
+        if ($user->id !== $foto->user_id) {
+            abort(403, 'Anda tidak memiliki izin untuk mengedit foto ini');
+        }
+
+        $kategori = Kategori::all();
+
+        $data = [
+            'foto' => $foto,
+            'kategori' => $kategori,
+        ];
+
+        return view('halaman.pengguna.tambah-foto.edit', compact('foto', 'kategori'));
     }
 
     /**
@@ -87,7 +113,61 @@ class TambahFotoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Validasi input
+        $validator = \Validator::make($request->all(), [
+            'judul' => 'required|string|max:255',
+            'kategori' => 'required|exists:kategori,id',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'deskripsi' => 'nullable|string|max:500',
+        ]);
+
+        // Jika validasi gagal, kembali ke halaman sebelumnya dengan error
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // Ambil data foto yang akan diupdate
+        $foto = Foto::find($id);
+
+        // Pastikan data foto ditemukan
+        if (!$foto) {
+            abort(404, 'Foto tidak ditemukan');
+        }
+
+        // Current user
+        $user = auth()->user();
+
+        // Authorization: pastikan user yang sedang login adalah pemilik foto
+        if ($user->id !== $foto->user_id) {
+            abort(403, 'Anda tidak memiliki izin untuk mengedit foto ini');
+        }
+
+        // Periksa apakah ada file foto baru yang diupload
+        if ($request->hasFile('foto')) {
+            // Hapus foto lama jika ada
+            if ($foto->foto) {
+                Storage::disk('public')->delete($foto->foto);
+            }
+
+            // Simpan file foto baru
+            $file = $request->file('foto');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('uploads/fotos', $filename, 'public');
+
+            // Update path foto di database
+            $foto->foto = $filePath;
+        }
+
+        // Update data lainnya di database
+        $foto->judul = $request->input('judul');
+        $foto->kategori_id = $request->input('kategori');
+        $foto->deskripsi = $request->input('deskripsi');
+        $foto->save();
+
+        // Redirect setelah berhasil mengupdate
+        return redirect()->route('tambahfoto.index')->with('success', 'Foto berhasil diupdate!');
     }
 
     /**
@@ -95,6 +175,29 @@ class TambahFotoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Ambil data foto yang akan dihapus
+        $foto = Foto::find($id);
+        $user = auth()->user();
+        $foto->user_id = $user->id;
+        // Pastikan data foto ditemukan
+        if (!$foto) {
+            abort(404, 'Foto tidak ditemukan');
+        }
+
+        // Authorization: pastikan user yang sedang login adalah pemilik foto
+        if ($user->id !== $foto->user_id) {
+            abort(403, 'Anda tidak memiliki izin untuk menghapus foto ini');
+        }
+
+        // Hapus foto dari database
+        $foto->delete();
+
+        // Hapus file foto dari storage
+        if ($foto->foto) {
+            Storage::disk('public')->delete($foto->foto);
+        }
+
+        // Redirect setelah berhasil menghapus
+        return redirect()->route('tambahfoto.index')->with('success', 'Foto berhasil dihapus');
     }
 }

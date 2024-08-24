@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Index - PhotoFolio Bootstrap Template</title>
+    <title>Gallery Single - PhotoFolio Bootstrap Template</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
 
@@ -38,21 +38,21 @@
   ======================================================== -->
 </head>
 
-<body class="index-page">
+<body class="gallery-single-page">
 
     <header id="header" class="header d-flex align-items-center sticky-top">
         <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
 
             <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="assets/img/logo.png" alt=""> -->
+                {{-- <img src="{{ asset('landing-page/assets/img/logo.png') }}" alt=""> --}}
                 <i class="bi bi-camera"></i>
                 <h1 class="sitename">PhotoFolio</h1>
             </a>
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="index.html" class="active">Home<br></a></li>
+                    <li><a href="/">Home<br></a></li>
                     <li><a href="about.html">About</a></li>
                     <li class="dropdown"><a href="gallery.html"><span>Gallery</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
@@ -75,8 +75,8 @@
                             </li>
                         </ul>
                     </li>
+                    <li><a href="services.html">Services</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="/login">login</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
@@ -93,51 +93,66 @@
 
     <main class="main">
 
-        <!-- Hero Section -->
-        <section id="hero" class="hero section">
-
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 text-center" data-aos="fade-up" data-aos-delay="100">
-                        <h2><span>I'm </span><span class="underlight">Jenny Wilson</span> a Professional<span>
-                                Photographer from New York City</span></h2>
-                        <p>Blanditiis praesentium aliquam illum tempore incidunt debitis dolorem magni est deserunt sed
-                            qui libero. Qui voluptas amet.</p>
-                        <a href="contact.html" class="btn-get-started">Available for Hire<br></a>
+        <!-- Page Title -->
+        <div class="page-title" data-aos="fade">
+            <div class="heading">
+                <div class="container">
+                    <div class="row d-flex justify-content-center text-center">
+                        <div class="col-lg-8">
+                            <h1>Gallery Single</h1>
+                            <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio
+                                sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus
+                                dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
+                            <a href="contact.html" class="cta-btn">Available for Hire<br></a>
+                        </div>
                     </div>
                 </div>
             </div>
+            <nav class="breadcrumbs">
+                <div class="container">
+                    <ol>
+                        <li><a href="/">Home</a></li>
+                        <li class="#">Gallery Single</li>
+                    </ol>
+                </div>
+            </nav>
+        </div><!-- End Page Title -->
 
-        </section><!-- /Hero Section -->
+        <!-- Gallery Details Section -->
+        <section id="gallery-details" class="gallery-details section">
 
-        <!-- Gallery Section -->
-        <section id="gallery" class="gallery section">
+            <div class="container" data-aos="fade-up">
 
-            <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
+                <div class="portfolio-details-slider swiper init-swiper">
 
-                <div class="row gy-4 justify-content-center">
-
-                    @foreach ($foto as $item)
-                        <div class="col-xl-3 col-lg-4 col-md-6">
-                            <div class="gallery-item h-100">
-                                <img src="{{ asset('/storage/' . $item->foto) }}" alt="{{ $item->judul }}"
-                                    class="img-fluid">
-                                <div class="gallery-links d-flex align-items-center justify-content-center">
-                                    <a href="{{ asset('/storage/' . $item->foto) }}" title="{{ $item->judul }}"
-                                        class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                                    <a href="{{ route('detailfoto', ['id' => $item->id]) }}" class="details-link"><i
-                                            class="bi bi-link-45deg"></i></a>
-                                </div>
-                            </div>
-                        </div><!-- End Gallery Item -->
-                    @endforeach
-
+                    <div class="swiper-wrapper align-items-center">
+                        <img src="{{ asset('/storage/' . $foto->foto) }}" alt="{{ $foto->judul }}">
+                    </div>
                 </div>
 
+                <div class="row justify-content-between gy-4 mt-4">
+
+                    <div class="col-lg-8" data-aos="fade-up">
+                        <div class="portfolio-description">
+                            <h2>Deskripsi Singkat Dari Pemilik</h2>
+                            <p>
+                                {{ $foto->deskripsi }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="portfolio-info">
+                            <h3>Project information</h3>
+                            <ul>
+                                <li><strong>Category</strong>{{ $foto->kategori->nama_kategori }}</li>
+                                <li><strong>Client</strong>{{ $foto->user->name }}</li>
+                                <li><strong>Project date</strong>{{ $foto->created_at }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-        </section><!-- /Gallery Section -->
-
+        </section><!-- /Gallery Details Section -->
     </main>
 
     <footer id="footer" class="footer">
