@@ -14,9 +14,10 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
+
                         <a href="{{ url()->previous() }}" type="button" class="mt-2 btn btn-warning">Back</a>
                         <!-- General Form Elements -->
-                        <form action="{{ route('tambahfoto.store') }}" method="POST">
+                        <form action="{{ route('tambahfoto.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Judul</label>
@@ -27,24 +28,24 @@
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Kategori</label>
                                 <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select" name="kategori" aria-label="Default select example">
                                         <option selected>Pilih Kategori</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        @foreach ($data as $item)
+                                            <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputNumber" class="col-sm-2 col-form-label">File Foto</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="file" id="formFile">
+                                    <input class="form-control" name="foto" type="file" id="formFile">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Deskripsi</label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" style="height: 100px"></textarea>
+                                    <textarea class="form-control" name="deskripsi" style="height: 100px"></textarea>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -54,6 +55,11 @@
                                 </div>
                             </div>
                         </form><!-- End General Form Elements -->
+                        @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <div class="alert alert-danger">{{ $error }}</div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
