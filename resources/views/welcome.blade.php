@@ -75,8 +75,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="services.html">Services</a></li>
                     <li><a href="contact.html">Contact</a></li>
+                    <li><a href="/login">login</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
