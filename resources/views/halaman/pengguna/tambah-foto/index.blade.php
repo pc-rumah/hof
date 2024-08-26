@@ -8,7 +8,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/pengguna">Home</a></li>
-                    <li class="breadcrumb-item active">Cards</li>
+                    <li class="breadcrumb-item active">Foto</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
