@@ -14,11 +14,18 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-
-                        <a href="{{ route('tambahfoto.index') }}" type="button" class="mt-2 btn btn-warning">Back</a>
+                        <div class="row">
+                            <div class="col-lg-2 mt-2">
+                                <h3>Halaman Edit</h3>
+                            </div>
+                            <div class="col-lg-10">
+                                <a href="{{ route('tambahfoto.index') }}" type="button"
+                                    class="mt-2 btn btn-warning">Back</a>
+                            </div>
+                        </div>
                         <!-- General Form Elements -->
                         <form action="{{ route('tambahfoto.update', $foto) }}" method="POST"
-                            enctype="multipart/form-data">
+                            enctype="multipart/form-data" class="mt-2">
                             @csrf
                             @method('PUT')
                             <div class="row mb-3">
