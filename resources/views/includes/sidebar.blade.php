@@ -73,7 +73,7 @@
             </li><!-- End Tambah Foto Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-contact.html">
+                <a class="nav-link collapsed" href="{{ route('tambahvidio.index') }}">
                     <i class="bi bi-envelope"></i>
                     <span>Tambah Vidio</span>
                 </a>

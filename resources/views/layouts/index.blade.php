@@ -100,6 +100,7 @@
     <script src="{{ asset('dashboard/assets/vendor/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('dashboard/assets/vendor/php-email-form/validate.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <!-- Template Main JS File -->
     <script src="{{ asset('dashboard/assets/js/main.js') }}"></script>
     <script>
@@ -111,12 +112,27 @@
             console.log('Modal is closed');
         });
     </script>
-
     <script>
         setTimeout(() => {
             $('.alert').fadeOut()
         }, 5000);
     </script>
+
+
+
+    <script>
+        function setVideoSource(sourceUrl) {
+            var videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.src = sourceUrl;
+        }
+
+        document.getElementById('videoModal').addEventListener('hidden.bs.modal', function() {
+            var videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.pause(); // Hentikan video
+            videoPlayer.currentTime = 0; // Setel ulang video ke awal
+        });
+    </script>
+
 
 </body>
 

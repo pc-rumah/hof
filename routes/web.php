@@ -6,6 +6,7 @@ use App\Http\Controllers\DetailFotoController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TambahFotoController;
+use App\Http\Controllers\TambahVidioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,22 +44,27 @@ Route::middleware('auth')->group(function () {
 // Route::get('admin', function () {
 //     return '<h1>LOgin admin</h1>';
 // })->middleware(['auth', 'verified', 'role:admin']);
-
 // Route::get('pengguna', function () {
 //     return '<h1>LOgin pengguna</h1>';
 // })->middleware(['auth', 'verified', 'role:pengguna']);
+// Route::get('kelola', function () {
+//     return '<h1>LOgin kelola</h1>';
+// })->middleware(['auth', 'verified', 'role_or_permission:tambah-file|admin']);
 
 
+
+// bagian admin
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.index');
 });
 
+
+// bagian pengguna
 Route::middleware(['auth', 'verified', 'role:pengguna'])->group(function () {
     Route::get('pengguna', [DashboardUserController::class, 'index'])->name('pengguna.index');
     Route::resource('tambahfoto', TambahFotoController::class);
+    Route::resource('tambahvidio', TambahVidioController::class);
 });
-// Route::get('kelola', function () {
-//     return '<h1>LOgin kelola</h1>';
-// })->middleware(['auth', 'verified', 'role_or_permission:tambah-file|admin']);
+
 
 require __DIR__ . '/auth.php';
