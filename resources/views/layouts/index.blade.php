@@ -69,6 +69,27 @@
             text-align: center;
             margin-top: auto;
         }
+
+        .hehe {
+            transition: transform .2s
+        }
+
+        .hehe:hover {
+            opacity: 0.7;
+            transform: scale(1.1);
+        }
+
+        /* CSS untuk menyembunyikan tombol secara default */
+        .gallery-item .btn {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* CSS untuk menampilkan tombol saat di-hover */
+        .gallery-item:hover .btn {
+            opacity: 1;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 
@@ -103,22 +124,13 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('dashboard/assets/js/main.js') }}"></script>
-    <script>
-        $('#hehe').on('show.bs.modal', function(e) {
-            console.log('Modal is opening');
-        });
 
-        $('#hehe').on('hidden.bs.modal', function(e) {
-            console.log('Modal is closed');
-        });
-    </script>
+
     <script>
         setTimeout(() => {
             $('.alert').fadeOut()
         }, 5000);
     </script>
-
-
 
     <script>
         function setVideoSource(sourceUrl) {
@@ -132,8 +144,6 @@
             videoPlayer.currentTime = 0; // Setel ulang video ke awal
         });
     </script>
-
-
 </body>
 
 </html>

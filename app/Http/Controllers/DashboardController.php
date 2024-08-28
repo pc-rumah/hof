@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Foto;
 use App\Models\User;
+use App\Models\Vidio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,8 +16,10 @@ class DashboardController extends Controller
     public function index()
     {
         $count_user = User::role('pengguna')->count();
+        $count_foto = Foto::all()->count();
+        $count_vidio = Vidio::all()->count();
 
-        return view('halaman.admin.index', compact('count_user'));
+        return view('halaman.admin.index', compact('count_user', 'count_foto', 'count_vidio'));
     }
 
     /**

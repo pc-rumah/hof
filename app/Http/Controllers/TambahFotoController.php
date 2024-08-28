@@ -175,6 +175,7 @@ class TambahFotoController extends Controller
      */
     public function destroy(string $id)
     {
+
         // Ambil data foto yang akan dihapus
         $foto = Foto::find($id);
         $user = auth()->user();

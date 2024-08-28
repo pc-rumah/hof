@@ -20,7 +20,7 @@
                         </div>
                         <div class="col-lg-10">
                             <a href="{{ route('tambahvidio.create') }}" type="button" class="btn btn-primary">Tambah
-                                Foto</a>
+                                Vidio</a>
                         </div>
                         {{-- pesan session --}}
                         @if (Session::has('success'))
@@ -41,14 +41,14 @@
                                         <div class="card h-100">
                                             <div class="gallery-item h-100 position-relative">
                                                 <img src="{{ asset('/storage/' . $item->thumbnail) }}"
-                                                    alt="{{ $item->judul }}" class="img-fluid">
+                                                    alt="{{ $item->judul }}" class="img-fluid hehe">
                                                 <div
                                                     class="position-absolute top-50 start-50 translate-middle text-center">
-                                                    <button type="button" class="btn btn-primary btn-lg"
+                                                    <a type="button" class="btn btn-primary btn-lg terbang"
                                                         data-bs-toggle="modal" data-bs-target="#videoModal"
                                                         onclick="setVideoSource('{{ asset('/storage/' . $item->video) }}')">
                                                         <i class="bi bi-play-circle"></i>
-                                                    </button>
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -66,14 +66,9 @@
                                                             class="btn btn-primary w-100">Edit</a>
                                                     </div>
                                                     <div class="col-6 p-1">
-                                                        <form action="{{ route('tambahvidio.destroy', $item) }}"
-                                                            method="POST"
-                                                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus foto ini?');">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit"
-                                                                class="btn btn-danger w-100">Delete</button>
-                                                        </form>
+                                                        <button type="submit" class="btn btn-danger w-100"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#confirmDeletevidio">Delete</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -83,12 +78,9 @@
                                 @endforeach
                             </div>
                         </section>
-
                     </div><!-- End Bordered Tabs -->
-
                 </div>
             </div>
-
         </div>
     </div>
 </main>

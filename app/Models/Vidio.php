@@ -10,6 +10,7 @@ class Vidio extends Model
     use HasFactory;
 
     protected $table = 'vidio';
+
     protected $fillable = [
         'judul',
         'deskripsi',
@@ -17,7 +18,6 @@ class Vidio extends Model
         'thumbnail',
         'video',
         'views',
-        'tanggal_upload', // Gunakan nama kolom yang konsisten
         'kategori_id', // Gunakan konvensi penamaan Laravel
         'user_id',     // Gunakan konvensi penamaan Laravel
     ];
