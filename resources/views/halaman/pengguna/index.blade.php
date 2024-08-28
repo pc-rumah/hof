@@ -14,5 +14,9 @@
         <section class="section dashboard">
             <h1>Selamat Datang <span>{{ auth()->user()->name }}</span></h1>
         </section>
+
+        <div class="">
+            <a href="/" type="button" class="btn btn-primary">Kembali ke Landing Page</a>
+        </div>
     </main>
 @endsection

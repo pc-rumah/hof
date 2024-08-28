@@ -4,7 +4,7 @@
         <h1>Dashboard</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/pengguna">Home</a></li>
                 <li class="breadcrumb-item active">Vidio</li>
             </ol>
         </nav>
