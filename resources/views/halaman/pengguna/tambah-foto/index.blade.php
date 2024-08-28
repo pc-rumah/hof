@@ -52,14 +52,11 @@
                                                                 class="btn btn-primary w-100">Edit</a>
                                                         </div>
                                                         <div class="col-6 p-1">
-                                                            <form action="{{ route('tambahfoto.destroy', $item) }}"
-                                                                method="POST"
-                                                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus foto ini?');">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit"
-                                                                    class="btn btn-danger w-100">Delete</button>
-                                                            </form>
+
+                                                            <button type="button" class="btn btn-danger w-100"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#confirmDeletefoto">Delete</button>
+
                                                         </div>
                                                     </div>
                                                 </div>

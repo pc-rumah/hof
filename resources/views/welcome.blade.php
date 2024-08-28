@@ -76,7 +76,20 @@
                         </ul>
                     </li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="/login">login</a></li>
+
+                    {{-- tombol dashboard dan login --}}
+                    @if (Auth::check())
+                        @if (Auth::user()->hasRole('admin'))
+                            <li><a href="/admin">Dashboard</a></li>
+                        @elseif (Auth::user()->hasRole('pengguna'))
+                            <li><a href="/pengguna">Dashboard</a></li>
+                        @endif
+                    @else
+                        <li><a href="/login">Login</a></li>
+                    @endif
+
+                    {{-- tombol dashboard dan login --}}
+
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>

@@ -6,6 +6,7 @@ use App\Models\Kategori;
 use App\Models\Vidio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class TambahVidioController extends Controller
 {
@@ -35,8 +36,8 @@ class TambahVidioController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'durasi_menit' => 'required|integer|min:0',
-            'durasi_detik' => 'required|integer|min:0|max:59',
+            'durasi_menit' => 'required|numeric|min:0',
+            'durasi_detik' => 'required|numeric|min:0|max:59',
             'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'vidio' => 'required|mimes:mp4,mov,ogg,qt|max:20000',
             'kategori' => 'required|exists:kategori,id',
@@ -90,22 +91,116 @@ class TambahVidioController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Ambil data foto berdasarkan ID
+        $vidio = Vidio::find($id);
+        // Pastikan data foto ditemukan
+        if (!$vidio) {
+            abort(404, 'Foto tidak ditemukan');
+        }
+        // bagian durasi
+        // if ($vidio->durasi) {
+        //     // Pisahkan durasi menjadi jam, menit, dan detik
+        //     list($hours, $minutes, $seconds) = explode(':', $vidio->durasi);
+        // } else {
+        //     // Jika durasi tidak ada atau null, set nilai default
+        //     $hours = $minutes = $seconds = 0;
+        // }
+        // Current user
+        $user = auth()->user();
+        // Authorization: pastikan user yang sedang login adalah pemilik foto
+        if ($user->id !== $vidio->user_id) {
+            abort(403, 'Anda tidak memiliki izin untuk mengedit foto ini');
+        }
+        $kategori = Kategori::all();
+        $data = [
+            'vidio' => $vidio,
+            'kategori' => $kategori,
+        ];
+        return view('halaman.pengguna.tambah-vidio.edit', compact('vidio', 'kategori'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Vidio $vidio)
     {
-        //
+        // Validasi input
+        $validated = $request->validate([
+            'judul' => 'required|string|max:255',
+            'kategori' => 'required|exists:kategori,id',
+            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'vidio' => 'nullable|mimes:mp4,mkv,avi|max:20480', // 20MB max
+            'deskripsi' => 'nullable|string',
+        ]);
+
+        // Update atribut
+        $vidio->judul = $validated['judul'];
+        $vidio->kategori_id = $validated['kategori'];
+        $vidio->user_id = auth()->id(); // Tambahkan user_id
+
+        // Tangani upload thumbnail
+        if ($request->hasFile('thumbnail')) {
+            // Hapus thumbnail lama jika ada
+            if ($vidio->thumbnail && Storage::disk('public')->exists($vidio->thumbnail)) {
+                Storage::disk('public')->delete($vidio->thumbnail);
+            }
+
+            // Simpan thumbnail baru
+            $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+            $vidio->thumbnail = $thumbnailPath;
+        }
+
+        // Tangani upload video
+        if ($request->hasFile('vidio')) {
+            // Hapus video lama jika ada
+            if ($vidio->video && Storage::disk('public')->exists($vidio->video)) {
+                Storage::disk('public')->delete($vidio->video);
+            }
+
+            // Simpan video baru
+            $vidioPath = $request->file('vidio')->store('vidios', 'public');
+            $vidio->video = $vidioPath;
+        }
+
+        // Update deskripsi
+        $vidio->deskripsi = $validated['deskripsi'] ?? $vidio->deskripsi;
+
+        // Simpan perubahan
+        $vidio->save(); // Pastikan save() digunakan untuk instance model
+
+        // Redirect dengan pesan sukses
+        return redirect()->route('tambahvidio.index')->with('success', 'Video berhasil diperbarui!');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        // Ambil data foto yang akan dihapus
+        $vidio = Vidio::find($id);
+        $user = auth()->user();
+        $vidio->user_id = $user->id;
+        // Pastikan data foto ditemukan
+        if (!$vidio) {
+            abort(404, 'Foto tidak ditemukan');
+        }
+
+        // Authorization: pastikan user yang sedang login adalah pemilik foto
+        if ($user->id !== $vidio->user_id) {
+            abort(403, 'Anda tidak memiliki izin untuk menghapus foto ini');
+        }
+
+        // Hapus foto dari database
+        $vidio->delete();
+
+        // Hapus file foto dari storage
+        if ($vidio->foto) {
+            Storage::disk('public')->delete($vidio->foto);
+        }
+
+        // Redirect setelah berhasil menghapus
+        return redirect()->route('tambahvidio.index')->with('success', 'Vidio berhasil dihapus');
     }
 }

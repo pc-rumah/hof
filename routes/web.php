@@ -64,6 +64,8 @@ Route::middleware(['auth', 'verified', 'role:pengguna'])->group(function () {
     Route::get('pengguna', [DashboardUserController::class, 'index'])->name('pengguna.index');
     Route::resource('tambahfoto', TambahFotoController::class);
     Route::resource('tambahvidio', TambahVidioController::class);
+    // Pastikan route ini benar
+    Route::patch('/vidio/{vidio}', [TambahVidioController::class, 'update'])->name('updatevidio');
 });
 
 
