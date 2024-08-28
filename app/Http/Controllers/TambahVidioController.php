@@ -43,6 +43,8 @@ class TambahVidioController extends Controller
             'kategori' => 'required|exists:kategori,id',
         ]);
 
+
+
         // Handle file upload for thumbnail
         if ($request->hasFile('thumbnail')) {
             $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
@@ -55,6 +57,7 @@ class TambahVidioController extends Controller
 
         // Gabungkan menit dan detik menjadi format yang diinginkan, misalnya dalam detik
         $totalDurasi = ($request->input('durasi_menit') * 60) + $request->input('durasi_detik');
+        // $durasi = sprintf('%02d:%02d:%02d', 0, $durasi_menit, $durasi_detik);
 
         // Simpan data ke database
         Vidio::create([
@@ -196,8 +199,18 @@ class TambahVidioController extends Controller
         $vidio->delete();
 
         // Hapus file foto dari storage
-        if ($vidio->foto) {
-            Storage::disk('public')->delete($vidio->foto);
+        // if ($vidio->foto) {
+        //     Storage::disk('public')->delete($vidio->foto);
+        // }
+
+        // hapus thumbnail
+        if ($vidio->thumbnail) {
+            Storage::disk('public')->delete($vidio->thumbnail);
+        }
+
+        // hapus vidio
+        if ($vidio->video) {
+            Storage::disk('public')->delete($vidio->video);
         }
 
         // Redirect setelah berhasil menghapus

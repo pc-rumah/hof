@@ -36,6 +36,50 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+    <style>
+        .gallery .gallery-item {
+            width: 100%;
+            height: 350px;
+            /* Set a fixed height for uniformity */
+            overflow: hidden;
+            position: relative;
+            background-color: #000;
+            /* Optional: background color for fallback */
+        }
+
+
+        .gallery .gallery-item img {
+            width: 100%;
+            height: 120%;
+            object-fit: cover;
+            /* Ensures the image covers the entire container without distortion */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .gallery .swiper-container {
+            padding-bottom: 20px;
+            /* Adjust padding as needed */
+        }
+
+        .gallery .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery .gallery-links {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            display: none;
+        }
+
+        .gallery .gallery-item:hover .gallery-links {
+            display: flex;
+        }
+    </style>
 </head>
 
 <body class="index-page">
@@ -108,48 +152,76 @@
 
         <!-- Hero Section -->
         <section id="hero" class="hero section">
-
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6 text-center" data-aos="fade-up" data-aos-delay="100">
-                        <h2><span>I'm </span><span class="underlight">Jenny Wilson</span> a Professional<span>
-                                Photographer from New York City</span></h2>
+                        <h2><span>I'm </span><span class="underlight">Ahmad</span> a Beginner<span>
+                                WebDev from Jawa</span></h2>
                         <p>Blanditiis praesentium aliquam illum tempore incidunt debitis dolorem magni est deserunt sed
                             qui libero. Qui voluptas amet.</p>
                         <a href="contact.html" class="btn-get-started">Available for Hire<br></a>
                     </div>
                 </div>
             </div>
-
         </section><!-- /Hero Section -->
 
         <!-- Gallery Section -->
         <section id="gallery" class="gallery section">
-
             <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
-
-                <div class="row gy-4 justify-content-center">
-
-                    @foreach ($foto as $item)
-                        <div class="col-xl-3 col-lg-4 col-md-6">
-                            <div class="gallery-item h-100">
-                                <img src="{{ asset('/storage/' . $item->foto) }}" alt="{{ $item->judul }}"
-                                    class="img-fluid">
-                                <div class="gallery-links d-flex align-items-center justify-content-center">
-                                    <a href="{{ asset('/storage/' . $item->foto) }}" title="{{ $item->judul }}"
-                                        class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                                    <a href="{{ route('detailfoto', ['id' => $item->id]) }}" class="details-link"><i
-                                            class="bi bi-link-45deg"></i></a>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        @foreach ($foto as $item)
+                            <div class="swiper-slide">
+                                <div class="gallery-item">
+                                    <img src="{{ asset('/storage/' . $item->foto) }}" alt="{{ $item->judul }}"
+                                        class="img-fluid">
+                                    <div class="gallery-links d-flex align-items-center justify-content-center">
+                                        <a href="{{ asset('/storage/' . $item->foto) }}" title="{{ $item->judul }}"
+                                            class="glightbox preview-link"><i
+                                                class="bi bi-arrows-angle-expand"></i></a>
+                                        <a href="{{ route('detailfoto', ['id' => $item->id]) }}"
+                                            class="details-link">
+                                            <i class="bi bi-link-45deg"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div><!-- End Gallery Item -->
-                    @endforeach
-
+                        @endforeach
+                    </div>
                 </div>
-
             </div>
+        </section>
+        <!-- /Gallery Section -->
 
-        </section><!-- /Gallery Section -->
+
+        <!-- Vidio Section -->
+        <section id="gallery" class="gallery section">
+            <h1 style="text-align: center">Vidio</h1>
+            <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        @foreach ($vidio as $item)
+                            <div class="swiper-slide">
+                                <div class="gallery-item">
+                                    <img src="{{ asset('/storage/' . $item->thumbnail) }}" alt="{{ $item->judul }}"
+                                        class="img-fluid">
+                                    <div class="gallery-links d-flex align-items-center justify-content-center mt-2">
+                                        <a href="{{ asset('/storage/' . $item->video) }}"
+                                            title="{{ $item->judul }}" class="glightbox preview-link">
+                                            <i class="bi bi-arrows-angle-expand"></i>
+                                        </a>
+                                        <a href="{{ route('detailfoto', ['id' => $item->id]) }}"
+                                            class="details-link">
+                                            <i class="bi bi-link-45deg"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
     </main>
 
@@ -195,6 +267,45 @@
 
     <!-- Main JS File -->
     <script src="{{ asset('landing-page/assets/js/main.js') }}"></script>
+
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 4, // Sesuaikan jumlah slide yang ingin ditampilkan
+            spaceBetween: 10,
+            loop: true,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            mousewheel: {
+                invert: false,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                },
+                600: {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                },
+                960: {
+                    slidesPerView: 3,
+                    spaceBetween: 10,
+                },
+                1200: {
+                    slidesPerView: 4,
+                    spaceBetween: 10,
+                },
+            }
+        });
+    </script>
 
 </body>
 

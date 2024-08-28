@@ -12,6 +12,7 @@ class DashboardUserController extends Controller
      */
     public function index()
     {
+
         return view('halaman.pengguna.index');
     }
 
