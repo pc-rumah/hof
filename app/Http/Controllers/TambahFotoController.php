@@ -33,7 +33,6 @@ class TambahFotoController extends Controller
      */
     public function store(Request $request)
     {
-
         // Validasi data input
         $validator = \Validator::make($request->all(), [
             'judul' => 'required|string|max:255',
@@ -42,11 +41,13 @@ class TambahFotoController extends Controller
             'deskripsi' => 'nullable|string|max:500',
         ]);
 
-        // Jika validasi gagal, kembali ke halaman sebelumnya dengan error
+        // Jika validasi gagal, kirim respon JSON dengan error
         if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed',
+                'errors' => $validator->errors(),
+            ], 422);
         }
 
         // Menyimpan file foto
@@ -65,9 +66,13 @@ class TambahFotoController extends Controller
             'deskripsi' => $request->input('deskripsi'),
         ]);
 
-        // Redirect setelah berhasil menyimpan
-        return redirect()->route('tambahfoto.index')->with('success', 'Foto berhasil ditambahkan!');
+        // Kirim respon sukses dalam format JSON
+        return response()->json([
+            'success' => true,
+            'message' => 'Foto berhasil ditambahkan!',
+        ]);
     }
+
 
     /**
      * Display the specified resource.

@@ -3,7 +3,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
             <a class="nav-link {{ Request::is('pengguna') ? '' : 'collapsed' }}" href="/pengguna">
-                <i class="bi bi-grid"></i>
+                <i class="bi bi-house"></i>
                 <span>Dashboard</span>
             </a>
         </li><!-- End Dashboard Nav -->
@@ -18,21 +18,21 @@
 
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('files*') ? '' : 'collapsed' }}" href="users-profile.html">
-                    <i class="bi bi-person"></i>
+                    <i class="bi bi-archive"></i>
                     <span>File</span>
                 </a>
             </li><!-- End File Page Nav -->
 
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('fotos*') ? '' : 'collapsed' }}" href="users-profile.html">
-                    <i class="bi bi-person"></i>
+                    <i class="bi bi-image"></i>
                     <span>Foto</span>
                 </a>
             </li><!-- End Foto Page Nav -->
 
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('vidios*') ? '' : 'collapsed' }}" href="users-profile.html">
-                    <i class="bi bi-person"></i>
+                    <i class="bi bi-file-earmark-play"></i>
                     <span>Vidio</span>
                 </a>
             </li><!-- End Vidio Page Nav -->
@@ -40,7 +40,7 @@
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('kategori*') ? '' : 'collapsed' }}"
                     href="{{ route('kategori.index') }}">
-                    <i class="bi bi-person"></i>
+                    <i class="bi bi-bookmarks"></i>
                     <span>Kategori</span>
                 </a>
             </li><!-- End Vidio Page Nav -->
@@ -71,7 +71,7 @@
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('tambahfoto*') ? '' : 'collapsed' }}"
                     href="{{ route('tambahfoto.index') }}">
-                    <i class="bi bi-envelope"></i>
+                    <i class="bi bi-image"></i>
                     <span>Tambah Foto</span>
                 </a>
             </li><!-- End Tambah Foto Page Nav -->
@@ -79,14 +79,15 @@
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('tambahvidio*') ? '' : 'collapsed' }}"
                     href="{{ route('tambahvidio.index') }}">
-                    <i class="bi bi-envelope"></i>
+                    <i class="bi bi-file-earmark-play"></i>
                     <span>Tambah Vidio</span>
                 </a>
             </li><!-- End Tambah Vidio Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('tambahfile*') ? '' : 'collapsed' }}" href="pages-contact.html">
-                    <i class="bi bi-envelope"></i>
+                <a class="nav-link {{ Request::is('tambahfile*') ? '' : 'collapsed' }}"
+                    href="{{ route('tambahfile.index') }}">
+                    <i class="bi bi-archive"></i>
                     <span>Tambah File</span>
                 </a>
             </li><!-- End Tambah File Page Nav -->
