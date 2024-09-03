@@ -18,10 +18,10 @@
                     <div class="card-body pt-3">
                         <!-- Bordered Tabs -->
                         <div class="row">
-                            <div class="col-lg-2">
+                            <div class="col-lg-3">
                                 <h3>Halaman Foto</h3>
                             </div>
-                            <div class="col-lg-10">
+                            <div class="col-lg-9">
                                 <a href="{{ route('tambahfoto.create') }}" type="button" class="btn btn-primary">Tambah
                                     Foto</a>
                             </div>
@@ -41,7 +41,7 @@
                             <section class="section">
                                 <div class="row align-items-top">
                                     @foreach ($data as $item)
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-3 mb-4 mb-md-0">
                                             <!-- Card with titles, buttons, and links -->
                                             <div class="card h-100">
                                                 <img style="border-bottom: 2px solid black"
