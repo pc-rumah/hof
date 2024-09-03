@@ -15,8 +15,9 @@ class TambahVidioController extends Controller
      */
     public function index()
     {
+        $vid = Vidio::all();
         $data = Vidio::where('user_id', Auth::user()->id)->get();
-        return view('halaman.pengguna.tambah-vidio.index', compact('data'));
+        return view('halaman.pengguna.tambah-vidio.index', compact('data', 'vid'));
     }
 
     /**
@@ -43,21 +44,26 @@ class TambahVidioController extends Controller
             'kategori' => 'required|exists:kategori,id',
         ]);
 
-
-
         // Handle file upload for thumbnail
         if ($request->hasFile('thumbnail')) {
-            $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+
+            $namathumbnail = $request->file('thumbnail')->getClientOriginalName();
+
+            $thumbnailPath = $request->file('thumbnail')->storeAs('thumbnails', $namathumbnail, 'public');
         }
 
         // Handle file upload for video
         if ($request->hasFile('vidio')) {
-            $videoPath = $request->file('vidio')->store('vidios', 'public');
+            // Dapatkan nama asli file video yang diupload
+            $originalVideoName = $request->file('vidio')->getClientOriginalName();
+
+            // Simpan file dengan nama asli ke folder 'vidios' di penyimpanan publik
+            $videoPath = $request->file('vidio')->storeAs('vidios', $originalVideoName, 'public');
         }
+
 
         // Gabungkan menit dan detik menjadi format yang diinginkan, misalnya dalam detik
         $totalDurasi = ($request->input('durasi_menit') * 60) + $request->input('durasi_detik');
-        // $durasi = sprintf('%02d:%02d:%02d', 0, $durasi_menit, $durasi_detik);
 
         // Simpan data ke database
         Vidio::create([
@@ -72,9 +78,13 @@ class TambahVidioController extends Controller
             'user_id' => auth()->user()->id,
         ]);
 
-        // Redirect atau response setelah berhasil menyimpan
-        return redirect()->route('tambahvidio.index')->with('success', 'Vidio berhasil ditambahkan');
+        // Kirim respon sukses dalam format JSON
+        return response()->json([
+            'success' => true,
+            'message' => 'Vidio berhasil ditambahkan!',
+        ]);
     }
+
 
     /**
      * Display the specified resource.

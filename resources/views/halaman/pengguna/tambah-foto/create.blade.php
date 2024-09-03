@@ -17,7 +17,8 @@
 
                         <a href="{{ route('tambahfoto.index') }}" type="button" class="mt-2 btn btn-warning">Back</a>
                         <!-- General Form Elements -->
-                        <form action="{{ route('tambahfoto.store') }}" method="POST" enctype="multipart/form-data">
+                        <form id="uploadForm" action="{{ route('tambahfoto.store') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Judul</label>
@@ -52,6 +53,16 @@
                                 <label class="col-sm-2 col-form-label">Submit Button</label>
                                 <div class="col-sm-10">
                                     <button type="submit" class="btn btn-primary">Submit Form</button>
+                                    <button type="button" id="cancelUploadFoto" class="btn btn-danger">Cancel
+                                        Upload</button>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-12">
+                                    <div class="progress">
+                                        <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;"
+                                            aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                    </div>
                                 </div>
                             </div>
                         </form><!-- End General Form Elements -->

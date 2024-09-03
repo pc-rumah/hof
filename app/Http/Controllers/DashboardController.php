@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\File;
 use App\Models\Foto;
 use App\Models\User;
 use App\Models\Vidio;
@@ -18,8 +19,9 @@ class DashboardController extends Controller
         $count_user = User::role('pengguna')->count();
         $count_foto = Foto::all()->count();
         $count_vidio = Vidio::all()->count();
+        $count_file = File::all()->count();
 
-        return view('halaman.admin.index', compact('count_user', 'count_foto', 'count_vidio'));
+        return view('halaman.admin.index', compact('count_user', 'count_foto', 'count_vidio', 'count_file'));
     }
 
     /**

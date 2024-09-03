@@ -3,11 +3,14 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\DetailFotoController;
+use App\Http\Controllers\DetailVidioController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TambahFotoController;
 use App\Http\Controllers\TambahVidioController;
+use App\Models\File;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +28,7 @@ Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
 
 // halaman detail foto
 Route::get('/foto/{id}', [DetailFotoController::class, 'show'])->name('detailfoto');
+Route::get('/vidio/{id}', [DetailVidioController::class, 'show'])->name('detailvidio');
 
 
 
@@ -66,8 +70,9 @@ Route::middleware(['auth', 'verified', 'role:pengguna'])->group(function () {
     Route::get('pengguna', [DashboardUserController::class, 'index'])->name('pengguna.index');
     Route::resource('tambahfoto', TambahFotoController::class);
     Route::resource('tambahvidio', TambahVidioController::class);
-    // Pastikan route ini benar
+    Route::resource('tambahfile', FileController::class);
     Route::patch('/vidio/{vidio}', [TambahVidioController::class, 'update'])->name('updatevidio');
+    Route::patch('/file/{file}', [FileController::class, 'update'])->name('updatefile');
 });
 
 

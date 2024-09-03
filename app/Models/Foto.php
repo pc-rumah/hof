@@ -21,6 +21,8 @@ class Foto extends Model
         'deskripsi',
     ];
 
+
+
     /**
      * Relasi ke model Kategori
      * Satu foto memiliki satu kategori

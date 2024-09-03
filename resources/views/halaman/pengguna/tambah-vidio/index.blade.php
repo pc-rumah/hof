@@ -15,16 +15,21 @@
                 <div class="card-body pt-3">
                     <!-- Bordered Tabs -->
                     <div class="row">
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <h3>Halaman Vidio</h3>
                         </div>
-                        <div class="col-lg-10">
+                        <div class="col-lg-9">
                             <a href="{{ route('tambahvidio.create') }}" type="button" class="btn btn-primary">Tambah
                                 Vidio</a>
                         </div>
                         {{-- pesan session --}}
-                        @if (Session::has('success'))
+                        {{-- @if (Session::has('success'))
                             <div class="alert alert-success">{{ Session::get('success') }}</div>
+                        @endif --}}
+                        @if (session('success') || request()->has('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') ?? request()->get('success') }}
+                            </div>
                         @endif
                         @if (Session::has('error'))
                             <div class="alert alert-danger">{{ Session::get('error') }}</div>
@@ -86,14 +91,14 @@
 </main>
 
 
-{{-- modal vidio --}}
 
-<!-- Modal -->
+
+{{-- modal vidio --}}
 <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="videoModalLabel">Video Player</h5>
+                <h5 class="modal-title" id="videoModalLabel">Lihat Vidio</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -104,3 +109,4 @@
         </div>
     </div>
 </div>
+{{-- modal vidio --}}
