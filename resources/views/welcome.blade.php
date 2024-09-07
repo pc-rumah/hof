@@ -97,7 +97,7 @@
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a href="index.html" class="active">Home<br></a></li>
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="/about">About</a></li>
                     <li class="dropdown"><a href="gallery.html"><span>Gallery</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
@@ -131,7 +131,6 @@
                     @else
                         <li><a href="/login">Login</a></li>
                     @endif
-
                     {{-- tombol dashboard dan login --}}
 
                 </ul>
@@ -159,7 +158,8 @@
                                 WebDev from Jawa</span></h2>
                         <p>Blanditiis praesentium aliquam illum tempore incidunt debitis dolorem magni est deserunt sed
                             qui libero. Qui voluptas amet.</p>
-                        <a href="contact.html" class="btn-get-started">Available for Hire<br></a>
+                        <a href="/kontak" class="btn-get-started">Available for
+                            Hire<br></a>
                     </div>
                 </div>
             </div>

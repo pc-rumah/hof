@@ -92,8 +92,18 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="/kontak">Contact</a></li>
+                    {{-- tombol dashboard dan login --}}
+                    @if (Auth::check())
+                        @if (Auth::user()->hasRole('admin'))
+                            <li><a href="/admin">Dashboard</a></li>
+                        @elseif (Auth::user()->hasRole('pengguna'))
+                            <li><a href="/pengguna">Dashboard</a></li>
+                        @endif
+                    @else
+                        <li><a href="/login">Login</a></li>
+                    @endif
+                    {{-- tombol dashboard dan login --}}
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
@@ -110,19 +120,21 @@
     <main class="main">
         <!-- Page Title -->
         <div class="page-title" data-aos="fade">
-            <div class="heading">
+            <section id="hero" class="hero section">
                 <div class="container">
-                    <div class="row d-flex justify-content-center text-center">
-                        <div class="col-lg-8">
-                            <h1>Gallery Single</h1>
-                            <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio
-                                sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus
-                                dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
-                            <a href="contact.html" class="cta-btn">Available for Hire<br></a>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 text-center" data-aos="fade-up" data-aos-delay="100">
+                            <h2><span>I'm </span><span class="underlight">Ahmad</span> a Beginner<span>
+                                    WebDev from Jawa</span></h2>
+                            <p>Blanditiis praesentium aliquam illum tempore incidunt debitis dolorem magni est deserunt
+                                sed
+                                qui libero. Qui voluptas amet.</p>
+                            <a href="/kontak" class="btn-get-started">Available for
+                                Hire<br></a>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section><!-- /Hero Section -->
             <nav class="breadcrumbs">
                 <div class="container">
                     <ol>
