@@ -2,10 +2,17 @@
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('pengguna') ? '' : 'collapsed' }}" href="/pengguna">
-                <i class="bi bi-house"></i>
-                <span>Dashboard</span>
-            </a>
+            @if (Auth::user()->hasRole('admin'))
+                <a class="nav-link {{ Request::is('admin') ? '' : 'collapsed' }}" href="/admin">
+                    <i class="bi bi-house"></i>
+                    <span>Dashboard</span>
+                </a>
+            @else
+                <a class="nav-link {{ Request::is('pengguna') ? '' : 'collapsed' }}" href="/pengguna">
+                    <i class="bi bi-house"></i>
+                    <span>Dashboard</span>
+                </a>
+            @endif
         </li><!-- End Dashboard Nav -->
 
         @if (Auth::user()->hasRole('admin'))
@@ -48,9 +55,10 @@
             <li class="nav-heading">Pages</li>
 
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('users-profile*') ? '' : 'collapsed' }}" href="users-profile.html">
-                    <i class="bi bi-person"></i>
-                    <span>Profile</span>
+                <a class="nav-link {{ Request::is('users-profile*') ? '' : 'collapsed' }}"
+                    href="{{ route('editabout.index') }}">
+                    <i class="bi bi-file-person-fill"></i>
+                    <span>About</span>
                 </a>
             </li><!-- End Profile Page Nav -->
 
@@ -62,7 +70,8 @@
             </li><!-- End F.A.Q Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('pages-contact*') ? '' : 'collapsed' }}" href="pages-contact.html">
+                <a class="nav-link {{ Request::is('editkontak*') ? '' : 'collapsed' }}"
+                    href="{{ route('editkontak.index') }}">
                     <i class="bi bi-envelope"></i>
                     <span>Contact</span>
                 </a>

@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\DetailFotoController;
 use App\Http\Controllers\DetailVidioController;
+use App\Http\Controllers\EditAboutController;
+use App\Http\Controllers\EditKontakController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LandingPageController;
@@ -25,6 +28,12 @@ use Illuminate\Support\Facades\Route;
 */
 // halaman landing page
 Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
+Route::get('/kontak', function () {
+    return view('konten.kontak');
+});
+
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+
 
 // halaman detail foto
 Route::get('/foto/{id}', [DetailFotoController::class, 'show'])->name('detailfoto');
@@ -62,6 +71,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.index');
     Route::resource('/kategori', KategoriController::class);
+    Route::resource('/editkontak', EditKontakController::class);
+    Route::resource('/editabout', EditAboutController::class);
 });
 
 
