@@ -7,35 +7,45 @@
             <div class="info-wrap" data-aos="fade-up" data-aos-delay="200">
                 <div class="row gy-5">
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="info-item d-flex align-items-center">
                             <i class="bi bi-geo-alt flex-shrink-0"></i>
                             <div>
                                 <h3>Location</h3>
-                                <p>A108 Adam Street, New York, NY 535022</p>
+                                <p>{{ $data->alamat }}</p>
                             </div>
                         </div>
                     </div><!-- End Info Item -->
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="info-item d-flex align-items-center">
                             <i class="bi bi-telephone flex-shrink-0"></i>
                             <div>
                                 <h3>Call</h3>
-                                <p>+1 5589 55488 55</p>
+                                <p>{{ $data->no_telp }}</p>
                             </div>
                         </div>
                     </div><!-- End Info Item -->
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="info-item d-flex align-items-center">
                             <i class="bi bi-envelope flex-shrink-0"></i>
                             <div>
                                 <h3>Email</h3>
-                                <p>info@example.com</p>
+                                <p>{{ $data->email }}</p>
                             </div>
                         </div>
-                    </div><!-- End Info Item -->
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="info-item d-flex align-items-center">
+                            <i class="bi bi-envelope flex-shrink-0"></i>
+                            <div>
+                                <h3>Github</h3>
+                                <p>{{ $data->github }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Info Item -->
                 </div>
             </div>
         </div>
