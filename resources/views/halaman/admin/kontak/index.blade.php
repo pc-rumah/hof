@@ -21,36 +21,49 @@
                     @csrf
                     <div class="col-md-12">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingName" name="alamat"
-                                placeholder="Alamat">
+                            <input type="text" class="form-control" id="floatingName" name="alamat" placeholder="Alamat"
+                                value="{{ old('alamat', $kontak->alamat ?? '') }}">
                             <label for="floatingName">Alamat</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating">
                             <input type="notelp" class="form-control" id="floatingEmail" name="no_telp"
-                                placeholder="No_Telp">
+                                placeholder="No_Telp" value="{{ old('no_telp', $kontak->no_telp ?? '') }}">
                             <label for="floatingEmail">No Telp</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating">
                             <input type="email" class="form-control" id="floatingPassword" name="email"
-                                placeholder="Email">
+                                placeholder="Email" value="{{ old('email', $kontak->email ?? '') }}">
                             <label for="floatingPassword">Email</label>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-floating">
                             <input type="text" class="form-control" id="floatingPassword" name="github"
-                                placeholder="Email">
+                                placeholder="Github" value="{{ old('github', $kontak->github ?? '') }}">
                             <label for="floatingTextarea">Github</label>
                         </div>
                     </div>
 
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">{{ isset($kontak) ? 'Update' : 'Submit' }}</button>
                     </div>
+
+                    {{-- pesan session --}}
+                    @if (session('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    @if (session('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
                 </form><!-- End floating Labels Form -->
 
             </div>

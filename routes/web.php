@@ -9,6 +9,7 @@ use App\Http\Controllers\EditAboutController;
 use App\Http\Controllers\EditKontakController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KontakController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TambahFotoController;
@@ -28,9 +29,11 @@ use Illuminate\Support\Facades\Route;
 */
 // halaman landing page
 Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
-Route::get('/kontak', function () {
-    return view('konten.kontak');
-});
+// Route::get('/kontak', function () {
+//     return view('konten.kontak');
+// });
+
+ROute::get('/kontak', [KontakController::class, 'index'])->name('kontak');
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
