@@ -7,7 +7,7 @@
             <div class="info-wrap" data-aos="fade-up" data-aos-delay="200">
                 <div class="row gy-5">
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="info-item d-flex align-items-center">
                             <i class="bi bi-geo-alt flex-shrink-0"></i>
                             <div>
@@ -17,7 +17,7 @@
                         </div>
                     </div><!-- End Info Item -->
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="info-item d-flex align-items-center">
                             <i class="bi bi-telephone flex-shrink-0"></i>
                             <div>
@@ -27,7 +27,7 @@
                         </div>
                     </div><!-- End Info Item -->
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="info-item d-flex align-items-center">
                             <i class="bi bi-envelope flex-shrink-0"></i>
                             <div>
@@ -35,7 +35,17 @@
                                 <p>info@example.com</p>
                             </div>
                         </div>
-                    </div><!-- End Info Item -->
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="info-item d-flex align-items-center">
+                            <i class="bi bi-envelope flex-shrink-0"></i>
+                            <div>
+                                <h3>Github</h3>
+                                <p>info@example.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Info Item -->
                 </div>
             </div>
         </div>

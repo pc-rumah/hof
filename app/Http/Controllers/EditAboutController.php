@@ -13,7 +13,11 @@ class EditAboutController extends Controller
      */
     public function index()
     {
-        return view('halaman.admin.about.index');
+        // Mengambil data about milik user yang sedang login
+        $about = About::where('user_id', auth()->user()->id)->first();
+
+        // Mengirim data about ke view
+        return view('halaman.admin.about.index', compact('about'));
     }
 
     /**
@@ -82,6 +86,9 @@ class EditAboutController extends Controller
             return redirect()->route('editabout.index')->with('success', 'About created successfully!');
         }
     }
+
+
+
 
 
 

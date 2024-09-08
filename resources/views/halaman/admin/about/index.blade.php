@@ -22,39 +22,43 @@
                         <label for="inputNumber" class="col-sm-2 col-form-label">Foto Profile</label>
                         <div class="col-sm-10">
                             <input class="form-control" name="image" type="file" id="formFile">
+                            @if (isset($about) && $about->image)
+                                <img src="{{ asset('profile_images/' . $about->image) }}" alt="Profile Image"
+                                    class="img-thumbnail mt-2" style="width: 150px;">
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingEmail" name="title"
-                                placeholder="Deskripsi">
+                            <input type="text" class="form-control" id="floatingEmail" name="title" placeholder="Title"
+                                value="{{ old('title', $about->title ?? '') }}">
                             <label for="floatingEmail">Title</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating">
                             <input type="text" class="form-control" id="floatingEmail" name="deskripsi"
-                                placeholder="Deskripsi">
+                                placeholder="Deskripsi" value="{{ old('deskripsi', $about->description ?? '') }}">
                             <label for="floatingEmail">Deskripsi</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating">
                             <input type="number" class="form-control" id="floatingPassword" name="notelp"
-                                placeholder="notelp">
+                                placeholder="Notelp" value="{{ old('notelp', $about->notelp ?? '') }}">
                             <label for="floatingPassword">Notelp</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating">
                             <input type="text" class="form-control" id="floatingPassword" name="kota"
-                                placeholder="notelp">
+                                placeholder="Kota" value="{{ old('kota', $about->kota ?? '') }}">
                             <label for="floatingPassword">Kota</label>
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="reset" class="btn btn-secondary">Reset</button>
+                        <button type="submit" class="btn btn-primary">{{ isset($about) ? 'Update' : 'Submit' }}</button>
+
                     </div>
                     {{-- pesan session --}}
                     @if (session('success'))
@@ -67,7 +71,8 @@
                             {{ session('error') }}
                         </div>
                     @endif
-                </form><!-- End floating Labels Form -->
+                </form>
+                <!-- End floating Labels Form -->
             </div>
         </div>
     </main>
