@@ -17,28 +17,19 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <ul>
-                                <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>1 May 1995</span>
+
+                                <li><i class="bi bi-chevron-right"></i> <strong>Telepon:</strong>
+                                    <span>{{ $data->notelp }}</span>
                                 </li>
-                                <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong>
-                                    <span>www.example.com</span>
+                                <li><i class="bi bi-chevron-right"></i> <strong>Deskripsi:</strong>
+                                    <span>{{ $data->description }}</span>
                                 </li>
-                                <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+123 456 7890</span>
-                                </li>
-                                <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>New York, USA</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <ul>
-                                <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>30</span></li>
-                                <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Master</span></li>
-                                <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong>
-                                    <span>email@example.com</span>
-                                </li>
-                                <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span>
+                                <li><i class="bi bi-chevron-right"></i> <strong>Kota:</strong>
+                                    <span>{{ $data->kota }}</span>
                                 </li>
                             </ul>
                         </div>
+
                     </div>
 
                 </div>

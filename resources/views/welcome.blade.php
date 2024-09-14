@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Index - PhotoFolio Bootstrap Template</title>
+    <title>HEHE</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
 
     <!-- Favicons -->
-    <link href="{{ asset('landing-page/assets/img/favicon.png') }}" rel="icon">
+    <link id="favicon" href="{{ asset('landing-page/assets/img/favicon1.png') }}" rel="icon" type="image/x-icon">
     <link href="{{ asset('landing-page/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Fonts -->
@@ -154,8 +154,8 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6 text-center" data-aos="fade-up" data-aos-delay="100">
-                        <h2><span>I'm </span><span class="underlight">Ahmad</span> a Beginner<span>
-                                WebDev from Jawa</span></h2>
+                        <h2><span>Post your</span><span class="underlight">Random</span> Content<span>
+                                Right Here</span></h2>
                         <p>Blanditiis praesentium aliquam illum tempore incidunt debitis dolorem magni est deserunt sed
                             qui libero. Qui voluptas amet.</p>
                         <a href="/kontak" class="btn-get-started">Available for
@@ -307,6 +307,28 @@
         });
     </script>
 
+    <script>
+        // Function to set random favicon
+        function setRandomFavicon() {
+            const totalFavicons = 38; // Jumlah total favicon yang tersedia
+            const randomIndex = Math.floor(Math.random() * totalFavicons) +
+                1; // Memilih angka acak antara 1 dan totalFavicons
+            const randomFavicon =
+                `{{ asset('landing-page/assets/img/favicon') }}${randomIndex}.png`; // Menghasilkan URL favicon
+            const faviconElement = document.getElementById('favicon');
+
+            // Tambahkan query string untuk menghindari cache
+            faviconElement.href = randomFavicon + '?v=' + Math.random();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setRandomFavicon();
+        });
+
+
+        // Call the function when the page loads
+        window.onload = setRandomFavicon;
+    </script>
 </body>
 
 </html>
