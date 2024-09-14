@@ -156,10 +156,8 @@
                     <div class="col-lg-6 text-center" data-aos="fade-up" data-aos-delay="100">
                         <h2><span>Post your</span><span class="underlight">Random</span> Content<span>
                                 Right Here</span></h2>
-                        <p>Blanditiis praesentium aliquam illum tempore incidunt debitis dolorem magni est deserunt sed
-                            qui libero. Qui voluptas amet.</p>
-                        <a href="/kontak" class="btn-get-started">Available for
-                            Hire<br></a>
+                        <p>You can upload your photos, vidios, and file in this website</p>
+                        <a href="/register" class="btn-get-started">Create Account and Start upload!<br></a>
                     </div>
                 </div>
             </div>
