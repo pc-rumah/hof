@@ -10,10 +10,11 @@ class DashboardUserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-
-        return view('halaman.pengguna.index');
+        return view('halaman.pengguna.index', [
+            'user' => $request->user(),
+        ]);
     }
 
     /**
