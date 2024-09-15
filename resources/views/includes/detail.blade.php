@@ -70,7 +70,7 @@
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a href="/">Home<br></a></li>
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="/about">About</a></li>
                     <li class="dropdown"><a href="gallery.html"><span>Gallery</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
@@ -109,10 +109,7 @@
             </nav>
 
             <div class="header-social-links">
-                <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+
             </div>
         </div>
     </header>
@@ -124,13 +121,11 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-6 text-center" data-aos="fade-up" data-aos-delay="100">
-                            <h2><span>I'm </span><span class="underlight">Ahmad</span> a Beginner<span>
-                                    WebDev from Jawa</span></h2>
-                            <p>Blanditiis praesentium aliquam illum tempore incidunt debitis dolorem magni est deserunt
-                                sed
-                                qui libero. Qui voluptas amet.</p>
-                            <a href="/kontak" class="btn-get-started">Available for
-                                Hire<br></a>
+                            @if (request()->is('kontak'))
+                                <h2>Contact Page</h2>
+                            @elseif (request()->is('about'))
+                                <h2>About Page</h2>
+                            @endif
                         </div>
                     </div>
                 </div>

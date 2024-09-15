@@ -71,8 +71,8 @@
 
         .gallery .gallery-links {
             position: absolute;
-            bottom: 10px;
-            right: 10px;
+            /* bottom: 10px; */
+            /* right: 10px; */
             display: none;
         }
 
@@ -91,7 +91,7 @@
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="assets/img/logo.png" alt=""> -->
                 <i class="bi bi-camera"></i>
-                <h1 class="sitename">PhotoFolio</h1>
+                <h1 class="sitename">HEHE</h1>
             </a>
 
             <nav id="navmenu" class="navmenu">
@@ -138,10 +138,7 @@
             </nav>
 
             <div class="header-social-links">
-                <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+
             </div>
 
         </div>
@@ -156,10 +153,8 @@
                     <div class="col-lg-6 text-center" data-aos="fade-up" data-aos-delay="100">
                         <h2><span>Post your</span><span class="underlight">Random</span> Content<span>
                                 Right Here</span></h2>
-                        <p>Blanditiis praesentium aliquam illum tempore incidunt debitis dolorem magni est deserunt sed
-                            qui libero. Qui voluptas amet.</p>
-                        <a href="/kontak" class="btn-get-started">Available for
-                            Hire<br></a>
+                        <p>You can upload your photos, vidios, and file in this website</p>
+                        <a href="/register" class="btn-get-started">Create Account and Start upload!<br></a>
                     </div>
                 </div>
             </div>
@@ -177,10 +172,8 @@
                                         class="card-img-top">
                                     <div class="gallery-links d-flex align-items-center justify-content-center">
                                         <a href="{{ asset('/storage/' . $item->foto) }}" title="{{ $item->judul }}"
-                                            class="glightbox preview-link"><i
-                                                class="bi bi-arrows-angle-expand"></i></a>
-                                        <a href="{{ route('detailfoto', ['id' => $item->id]) }}"
-                                            class="details-link">
+                                            class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
+                                        <a href="{{ route('detailfoto', ['id' => $item->id]) }}" class="details-link">
                                             <i class="bi bi-link-45deg"></i></a>
                                     </div>
                                 </div>
@@ -191,7 +184,6 @@
             </div>
         </section>
         <!-- /Gallery Section -->
-
 
         <!-- Vidio Section -->
         <section id="gallery" class="gallery section">
@@ -204,7 +196,7 @@
                                 <div class="gallery-item">
                                     <img src="{{ asset('/storage/' . $item->thumbnail) }}" alt="{{ $item->judul }}"
                                         class="img-fluid">
-                                    <div class="gallery-links d-flex align-items-center justify-content-center mt-2">
+                                    <div class="gallery-links d-flex align-items-center justify-content-center">
                                         <a href="{{ asset('/storage/' . $item->video) }}"
                                             title="{{ $item->judul }}" class="glightbox preview-link">
                                             <i class="bi bi-arrows-angle-expand"></i>
@@ -231,12 +223,6 @@
             <div class="copyright text-center ">
                 <p>© <span>Copyright</span> <strong class="px-1 sitename">PhotoFolio</strong> <span>All Rights
                         Reserved</span></p>
-            </div>
-            <div class="social-links d-flex justify-content-center">
-                <a href=""><i class="bi bi-twitter-x"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
             </div>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->
