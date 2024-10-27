@@ -18,8 +18,8 @@ class Vidio extends Model
         'thumbnail',
         'video',
         'views',
-        'kategori_id', // Gunakan konvensi penamaan Laravel
-        'user_id',     // Gunakan konvensi penamaan Laravel
+        'kategori_id',
+        'user_id',
     ];
 
     /**

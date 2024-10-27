@@ -17,28 +17,28 @@
 
         @if (Auth::user()->hasRole('admin'))
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('users-profile*') ? '' : 'collapsed' }}" href="users-profile.html">
+                <a class="nav-link {{ Request::is('muser*') ? '' : 'collapsed' }}" href="{{ route('muser.index') }}">
                     <i class="bi bi-person"></i>
                     <span>User</span>
                 </a>
             </li><!-- End User Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('files*') ? '' : 'collapsed' }}" href="users-profile.html">
+                <a class="nav-link {{ Request::is('mfile*') ? '' : 'collapsed' }}" href="{{ route('mfile.index') }}">
                     <i class="bi bi-archive"></i>
                     <span>File</span>
                 </a>
             </li><!-- End File Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('fotos*') ? '' : 'collapsed' }}" href="users-profile.html">
+                <a class="nav-link {{ Request::is('mfoto*') ? '' : 'collapsed' }}" href="{{ route('mfoto.index') }}">
                     <i class="bi bi-image"></i>
                     <span>Foto</span>
                 </a>
             </li><!-- End Foto Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('vidios*') ? '' : 'collapsed' }}" href="users-profile.html">
+                <a class="nav-link {{ Request::is('mvidio*') ? '' : 'collapsed' }}" href="{{ route('mvidio.index') }}">
                     <i class="bi bi-file-earmark-play"></i>
                     <span>Vidio</span>
                 </a>
@@ -55,19 +55,19 @@
             <li class="nav-heading">Pages</li>
 
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('users-profile*') ? '' : 'collapsed' }}"
+                <a class="nav-link {{ Request::is('editabout*') ? '' : 'collapsed' }}"
                     href="{{ route('editabout.index') }}">
                     <i class="bi bi-file-person-fill"></i>
                     <span>About</span>
                 </a>
             </li><!-- End Profile Page Nav -->
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link {{ Request::is('pages-faq*') ? '' : 'collapsed' }}" href="pages-faq.html">
                     <i class="bi bi-question-circle"></i>
                     <span>F.A.Q</span>
                 </a>
-            </li><!-- End F.A.Q Page Nav -->
+            </li><!-- End F.A.Q Page Nav --> --}}
 
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('editkontak*') ? '' : 'collapsed' }}"

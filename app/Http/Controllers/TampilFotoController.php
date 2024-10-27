@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kategori;
-use App\Models\Kontak;
+use App\Models\Foto;
 use Illuminate\Http\Request;
 
-class KontakController extends Controller
+class TampilFotoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Kontak::first();
-        $kategori = Kategori::all();
-        return view('konten.kontak', compact('data', 'kategori'));
+        $foto = Foto::all();
+        return view('halaman.admin.manage-foto.index', [
+            'foto' => $foto,
+            'user' => $request->user()
+        ]);
     }
 
     /**

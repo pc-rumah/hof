@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kategori;
-use App\Models\Kontak;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class KontakController extends Controller
+class TampilUserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Kontak::first();
-        $kategori = Kategori::all();
-        return view('konten.kontak', compact('data', 'kategori'));
+        $users = User::all();
+        return view('halaman.admin.manage-user.index', [
+            'datauser' => $users,
+            'user' => $request->user()
+        ]);
     }
 
     /**

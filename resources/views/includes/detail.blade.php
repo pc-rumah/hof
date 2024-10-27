@@ -74,23 +74,14 @@
                     <li class="dropdown"><a href="gallery.html"><span>Gallery</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
-                            <li><a href="gallery.html">Nature</a></li>
-                            <li><a href="gallery.html">People</a></li>
-                            <li><a href="gallery.html">Architecture</a></li>
-                            <li><a href="gallery.html">Animals</a></li>
-                            <li><a href="gallery.html">Sports</a></li>
-                            <li><a href="gallery.html">Travel</a></li>
-                            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i
-                                        class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                <ul>
-                                    <li><a href="#">Deep Dropdown 1</a></li>
-                                    <li><a href="#">Deep Dropdown 2</a></li>
-                                    <li><a href="#">Deep Dropdown 3</a></li>
-                                    <li><a href="#">Deep Dropdown 4</a></li>
-                                    <li><a href="#">Deep Dropdown 5</a></li>
-                                </ul>
-                            </li>
+                            @foreach ($kategori as $item)
+                                <li>
+                                    <a
+                                        href="{{ route('kategori.filter', $item->nama_kategori) }}">{{ $item->nama_kategori }}</a>
+                                </li>
+                            @endforeach
                         </ul>
+
                     </li>
                     <li><a href="/kontak">Contact</a></li>
                     {{-- tombol dashboard dan login --}}

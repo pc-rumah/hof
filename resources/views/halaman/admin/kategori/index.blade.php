@@ -18,9 +18,7 @@
                     <div class="card-body pt-3">
                         <!-- Bordered Tabs -->
                         <div class="row">
-                            <div class="col-lg-2">
-                                <h3>Halaman Kategori</h3>
-                            </div>
+
                             <div class="col-lg-10">
                                 <a href="{{ route('kategori.create') }}" type="button" class="btn btn-primary">Tambah
                                     Kategori</a>
@@ -49,13 +47,13 @@
                                                 <td>{{ $item->nama_kategori }}</td>
                                                 <td>
                                                     <a href="{{ route('kategori.edit', $item) }}"
-                                                        class="btn btn-primary w-25">Edit
+                                                        class="btn btn-primary w-50">Edit
                                                     </a>
                                                 </td>
 
                                                 <td>
                                                     <a href="{{ route('kategori.destroy', $item) }}"
-                                                        class="btn btn-danger w-25">Edit
+                                                        class="btn btn-danger w-50">Hapus
                                                     </a>
                                                 </td>
                                             </tr>
