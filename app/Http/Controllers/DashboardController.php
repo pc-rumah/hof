@@ -14,14 +14,21 @@ class DashboardController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $count_user = User::role('pengguna')->count();
         $count_foto = Foto::all()->count();
         $count_vidio = Vidio::all()->count();
         $count_file = File::all()->count();
 
-        return view('halaman.admin.index', compact('count_user', 'count_foto', 'count_vidio', 'count_file'));
+
+        return view('halaman.admin.index', [
+            'count_user' => $count_user,
+            'count_foto' => $count_foto,
+            'count_vidio' => $count_vidio,
+            'count_file' => $count_file,
+            'user' => $request->user()
+        ]);
     }
 
     /**

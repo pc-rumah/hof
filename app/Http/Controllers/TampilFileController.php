@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kategori;
-use App\Models\Kontak;
+use App\Models\File;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class KontakController extends Controller
+class TampilFileController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Kontak::first();
-        $kategori = Kategori::all();
-        return view('konten.kontak', compact('data', 'kategori'));
+        $files = File::all();
+        return view('halaman.admin.manage-file.index', [
+            'files' => $files,
+            'user' => $request->user()
+        ]);
     }
 
     /**

@@ -12,10 +12,13 @@ class EditKontakController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $kontak = Kontak::where('user_id', auth()->user()->id)->first();
-        return view('halaman.admin.kontak.index', compact('kontak'));
+        return view('halaman.admin.kontak.index', [
+            'kontak' => $kontak,
+            'user' => $request->user()
+        ]);
     }
 
     /**

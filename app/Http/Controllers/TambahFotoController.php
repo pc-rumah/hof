@@ -13,19 +13,25 @@ class TambahFotoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $data = Foto::where('user_id', Auth::id())->get();
-        return view('halaman.pengguna.tambah-foto.index', compact('data'));
+        return view('halaman.pengguna.tambah-foto.index', [
+            'data' => $data,
+            'user' => $request->user()
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         $data = Kategori::all();
-        return view('halaman.pengguna.tambah-foto.create', compact('data'));
+        return view('halaman.pengguna.tambah-foto.create', [
+            'data' => $data,
+            'user' => $request->user()
+        ]);
     }
 
     /**
@@ -67,10 +73,13 @@ class TambahFotoController extends Controller
         ]);
 
         // Kirim respon sukses dalam format JSON
-        return response()->json([
-            'success' => true,
-            'message' => 'Foto berhasil ditambahkan!',
-        ]);
+        // return response()->json([
+        //     'success' => true,
+        //     'message' => 'Foto berhasil ditambahkan!',
+        // ]);
+
+        // Redirect kembali ke halaman index dengan pesan sukses
+        return redirect()->route('tambahfoto.index')->with('success', 'Foto berhasil ditambahkan!');
     }
 
 

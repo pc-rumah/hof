@@ -13,19 +13,25 @@ class FileController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $file = File::where('user_id', Auth::id())->get();
-        return view('halaman.pengguna.tambah-file.index', compact('file'));
+        return view('halaman.pengguna.tambah-file.index', [
+            'file' => $file,
+            'user' => $request->user()
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         $data = KategoriFile::all();
-        return view('halaman.pengguna.tambah-file.create', compact('data'));
+        return view('halaman.pengguna.tambah-file.create', [
+            'data' => $data,
+            'user' => $request->user()
+        ]);
     }
 
     /**

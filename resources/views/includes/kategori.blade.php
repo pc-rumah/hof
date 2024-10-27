@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>HEHE</title>
+    <title>Gallery Single</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
 
     <!-- Favicons -->
-    <link id="favicon" href="{{ asset('landing-page/assets/img/favicon1.png') }}" rel="icon" type="image/x-icon">
+    <link href="{{ asset('landing-page/assets/img/favicon.png') }}" rel="icon">
     <link href="{{ asset('landing-page/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Fonts -->
@@ -28,14 +28,6 @@
 
     <!-- Main CSS File -->
     <link href="{{ asset('landing-page/assets/css/main.css') }}" rel="stylesheet">
-
-    <!-- =======================================================
-  * Template Name: PhotoFolio
-  * Template URL: https://bootstrapmade.com/photofolio-bootstrap-photography-website-template/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
     <style>
         .gallery .gallery-item {
             width: 100%;
@@ -46,7 +38,6 @@
             background-color: #000;
             /* Optional: background color for fallback */
         }
-
 
         .gallery .gallery-item img {
             width: 100%;
@@ -80,39 +71,43 @@
             display: flex;
         }
     </style>
+    <!-- =======================================================
+  * Template Name: PhotoFolio
+  * Template URL: https://bootstrapmade.com/photofolio-bootstrap-photography-website-template/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
 
-<body class="index-page">
-
+<body class="gallery-single-page">
     <header id="header" class="header d-flex align-items-center sticky-top">
         <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
 
-            <a href="#" class="logo d-flex align-items-center me-auto me-xl-0">
+            <a href="/" class="logo d-flex align-items-center me-auto me-xl-0">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="assets/img/logo.png" alt=""> -->
+                {{-- <img src="{{ asset('landing-page/assets/img/logo.png') }}" alt=""> --}}
                 <i class="bi bi-camera"></i>
-                <h1 class="sitename">HEHE</h1>
+                <h1 class="sitename">Hehe</h1>
             </a>
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="/" class="active">Home<br></a></li>
+                    <li><a href="/">Home<br></a></li>
                     <li><a href="/about">About</a></li>
-                    <li class="dropdown"><a href="#"><span>Gallery</span> <i
+                    <li class="dropdown"><a href="gallery.html"><span>Gallery</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
-
                             @foreach ($kategori as $item)
                                 <li>
                                     <a
                                         href="{{ route('kategori.filter', $item->nama_kategori) }}">{{ $item->nama_kategori }}</a>
                                 </li>
                             @endforeach
-
                         </ul>
+
                     </li>
                     <li><a href="/kontak">Contact</a></li>
-
                     {{-- tombol dashboard dan login --}}
                     @if (Auth::check())
                         @if (Auth::user()->hasRole('admin'))
@@ -124,104 +119,44 @@
                         <li><a href="/login">Login</a></li>
                     @endif
                     {{-- tombol dashboard dan login --}}
-
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
 
             <div class="header-social-links">
-
             </div>
-
         </div>
     </header>
 
     <main class="main">
-
-        <!-- Hero Section -->
-        <section id="hero" class="hero section">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 text-center" data-aos="fade-up" data-aos-delay="100">
-                        <h2><span>Post your</span><span class="underlight">Random</span> Content<span>
-                                Right Here</span></h2>
-                        <p>You can upload your photos, vidios, and file in this website</p>
-                        <a href="/register" class="btn-get-started">Create Account and Start upload!<br></a>
+        <!-- Page Title -->
+        <div class="page-title" data-aos="fade">
+            <section id="hero" class="hero section">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 text-center" data-aos="fade-up" data-aos-delay="100">
+                            <h2>Kategori: {{ $kategorii->nama_kategori }}</h2>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section><!-- /Hero Section -->
-
-        <!-- Gallery Section -->
-        <section id="gallery" class="gallery section">
-            <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        @foreach ($foto as $item)
-                            <div class="swiper-slide">
-                                <div class="gallery-item">
-                                    <img src="{{ asset('/storage/' . $item->foto) }}" alt="{{ $item->judul }}"
-                                        class="card-img-top">
-                                    <div class="gallery-links d-flex align-items-center justify-content-center">
-                                        <a href="{{ asset('/storage/' . $item->foto) }}" title="{{ $item->judul }}"
-                                            class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                                        <a href="{{ route('detailfoto', ['id' => $item->id]) }}" class="details-link">
-                                            <i class="bi bi-link-45deg"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
+            </section><!-- /Hero Section -->
+            <nav class="breadcrumbs">
+                <div class="container">
+                    <ol>
+                        <li><a href="/">Home</a></li>
+                        <li class="#">{{ $kategorii->nama_kategori }}</li>
+                    </ol>
                 </div>
-            </div>
-        </section>
-        <!-- /Gallery Section -->
+            </nav>
+        </div><!-- End Page Title -->
 
-        <!-- Vidio Section -->
-        <section id="gallery" class="gallery section">
-            <h1 style="text-align: center">Vidio</h1>
-            <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        @foreach ($vidio as $item)
-                            <div class="swiper-slide">
-                                <div class="gallery-item">
-                                    <img src="{{ asset('/storage/' . $item->thumbnail) }}" alt="{{ $item->judul }}"
-                                        class="img-fluid">
-                                    <div class="gallery-links d-flex align-items-center justify-content-center">
-                                        <a href="{{ asset('/storage/' . $item->video) }}"
-                                            title="{{ $item->judul }}" class="glightbox preview-link">
-                                            <i class="bi bi-arrows-angle-expand"></i>
-                                        </a>
-                                        <a href="{{ route('detailvidio', ['id' => $item->id]) }}"
-                                            class="details-link">
-                                            <i class="bi bi-link-45deg"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </section>
+        {{-- content --}}
+        @yield('content')
+        {{-- content --}}
     </main>
 
-    <footer id="footer" class="footer">
-        <div class="container">
-            <div class="copyright text-center ">
-                <p>© <span>Copyright</span> <strong class="px-1 sitename">PhotoFolio</strong> <span>All Rights
-                        Reserved</span></p>
-            </div>
-            <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you've purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-            </div>
-        </div>
-    </footer>
+
+    @include('includes.footerdetail')
 
     <!-- Scroll Top -->
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
@@ -242,7 +177,6 @@
     <!-- Main JS File -->
     <script src="{{ asset('landing-page/assets/js/main.js') }}"></script>
 
-
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         var swiper = new Swiper('.swiper-container', {
@@ -258,7 +192,7 @@
                 clickable: true,
             },
             mousewheel: {
-                invert: false,
+                invert: true,
             },
             breakpoints: {
                 0: {
@@ -280,28 +214,4 @@
             }
         });
     </script>
-
-    <script>
-        // Function to set random favicon
-        function setRandomFavicon() {
-            const totalFavicons = 38; // Jumlah total favicon yang tersedia
-            const randomIndex = Math.floor(Math.random() * totalFavicons) +
-                1; // Memilih angka acak antara 1 dan totalFavicons
-            const randomFavicon =
-                `{{ asset('landing-page/assets/img/favicon') }}${randomIndex}.png`; // Menghasilkan URL favicon
-            const faviconElement = document.getElementById('favicon');
-
-            // Tambahkan query string untuk menghindari cache
-            faviconElement.href = randomFavicon + '?v=' + Math.random();
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            setRandomFavicon();
-        });
-
-        // Call the function when the page loads
-        window.onload = setRandomFavicon;
-    </script>
 </body>
-
-</html>

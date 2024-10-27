@@ -14,10 +14,11 @@ class LandingPageController extends Controller
         $foto = Foto::all();
         $kategori = Kategori::all();
         $vidio = Vidio::all();
+        $kategori = Kategori::all();
         // $data = [
         //     'foto' => $foto,
         //     'kategori' => $kategori,
         // ];
-        return view('welcome', compact('foto', 'kategori', 'vidio'));
+        return view('welcome', compact('foto', 'kategori', 'vidio', 'kategori'));
     }
 }

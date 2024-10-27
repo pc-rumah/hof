@@ -4,29 +4,39 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use App\Models\Vidio;
+use FFMpeg\FFMpeg;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+
 
 class TambahVidioController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+
         $vid = Vidio::all();
         $data = Vidio::where('user_id', Auth::user()->id)->get();
-        return view('halaman.pengguna.tambah-vidio.index', compact('data', 'vid'));
+        return view('halaman.pengguna.tambah-vidio.index', [
+            'data' => $data,
+            'vid' => $vid,
+            'user' => $request->user()
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         $data = Kategori::all();
-        return view('halaman.pengguna.tambah-vidio.create', compact('data'));
+        return view('halaman.pengguna.tambah-vidio.create', [
+            'data' => $data,
+            'user' => $request->user()
+        ]);
     }
 
     /**
@@ -63,7 +73,8 @@ class TambahVidioController extends Controller
 
 
         // Gabungkan menit dan detik menjadi format yang diinginkan, misalnya dalam detik
-        $totalDurasi = ($request->input('durasi_menit') * 60) + $request->input('durasi_detik');
+        $totalDurasi = sprintf('%02d:%02d:%02d', 0, $request->input('durasi_menit'), $request->input('durasi_detik'));
+
 
         // Simpan data ke database
         Vidio::create([
@@ -84,6 +95,7 @@ class TambahVidioController extends Controller
             'message' => 'Vidio berhasil ditambahkan!',
         ]);
     }
+
 
 
     /**

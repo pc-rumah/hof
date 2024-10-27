@@ -11,13 +11,16 @@ class EditAboutController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         // Mengambil data about milik user yang sedang login
         $about = About::where('user_id', auth()->user()->id)->first();
 
         // Mengirim data about ke view
-        return view('halaman.admin.about.index', compact('about'));
+        return view('halaman.admin.about.index', [
+            'about' => $about,
+            'user' => $request->user()
+        ]);
     }
 
     /**

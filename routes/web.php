@@ -14,6 +14,10 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TambahFotoController;
 use App\Http\Controllers\TambahVidioController;
+use App\Http\Controllers\TampilFileController;
+use App\Http\Controllers\TampilFotoController;
+use App\Http\Controllers\TampilUserController;
+use App\Http\Controllers\TampilVidioController;
 use App\Models\File;
 use Illuminate\Support\Facades\Route;
 
@@ -33,8 +37,7 @@ Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
 //     return view('konten.kontak');
 // });
 
-ROute::get('/kontak', [KontakController::class, 'index'])->name('kontak');
-
+Route::get('/kontak', [KontakController::class, 'index'])->name('kontak');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
 
@@ -42,6 +45,8 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/foto/{id}', [DetailFotoController::class, 'show'])->name('detailfoto');
 Route::get('/vidio/{id}', [DetailVidioController::class, 'show'])->name('detailvidio');
 
+// halaman kategori foto
+Route::get('/kategori/{nama_kategori}', [App\Http\Controllers\KategoriController::class, 'filterByCategory'])->name('kategori.filter');
 
 
 // Route::get('/dashboard', function () {
@@ -76,6 +81,12 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::resource('/kategori', KategoriController::class);
     Route::resource('/editkontak', EditKontakController::class);
     Route::resource('/editabout', EditAboutController::class);
+
+    // manage
+    Route::resource('/muser', TampilUserController::class);
+    Route::resource('/mfile', TampilFileController::class);
+    Route::resource('/mfoto', TampilFotoController::class);
+    Route::resource('mvidio', TampilVidioController::class);
 });
 
 

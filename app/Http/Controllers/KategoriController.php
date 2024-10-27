@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Foto;
 use App\Models\Kategori;
+use App\Models\Vidio;
 use Illuminate\Http\Request;
 
 class KategoriController extends Controller
@@ -10,18 +12,23 @@ class KategoriController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $data = Kategori::all();
-        return view('halaman.admin.kategori.index', compact('data'));
+        return view('halaman.admin.kategori.index', [
+            'data' => $data,
+            'user' => $request->user()
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('halaman.admin.kategori.create');
+        return view('halaman.admin.kategori.create', [
+            'user' => $request->user()
+        ]);
     }
 
     /**
@@ -50,6 +57,32 @@ class KategoriController extends Controller
     {
         //
     }
+
+    public function filterByCategory($nama_kategori)
+    {
+        // Cari kategori berdasarkan nama
+        $kategorii = Kategori::where('nama_kategori', $nama_kategori)->first();
+        $kategori = Kategori::all();
+
+        if (!$kategorii) {
+            return redirect()->back()->with('error', 'Kategori tidak ditemukan.');
+        }
+
+        // Dapatkan gambar berdasarkan kategori
+        $gambar = Foto::where('kategori_id', $kategorii->id)->get();
+        $vidio = Vidio::where('kategori_id', $kategorii->id)->get();
+
+        if ($gambar->isEmpty()) {
+            // Jika gambar tidak ditemukan, Anda dapat mengembalikan halaman dengan pesan
+            return view('halaman.pengguna.kategori', compact('kategori', 'kategorii'))
+                ->with('message', 'Tidak ada gambar yang ditemukan untuk kategori ini.');
+        }
+
+        // Kembalikan view dengan data gambar yang difilter
+        return view('halaman.pengguna.kategori', compact('gambar', 'kategori', 'kategorii', 'vidio'));
+    }
+
+
 
     /**
      * Show the form for editing the specified resource.
