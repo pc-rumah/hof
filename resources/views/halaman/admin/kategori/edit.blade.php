@@ -17,7 +17,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-2 mt-2">
-                                    <h3>Halaman Edit</h3>
+                                    <h3>Edit Kategori</h3>
                                 </div>
                                 <div class="col-lg-10">
                                     <a href="{{ route('kategori.index') }}" type="button"

@@ -102,6 +102,12 @@
                 height: auto;
             }
         }
+
+        @media (max-width: 576px) {
+            .btn.w-50 {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 

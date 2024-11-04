@@ -47,15 +47,13 @@
                                                 <td>{{ $item->nama_kategori }}</td>
                                                 <td>
                                                     <a href="{{ route('kategori.edit', $item) }}"
-                                                        class="btn btn-primary w-50">Edit
-                                                    </a>
+                                                        class="btn btn-primary mb-2">Edit</a>
                                                 </td>
-
                                                 <td>
                                                     <a href="{{ route('kategori.destroy', $item) }}"
-                                                        class="btn btn-danger w-50">Hapus
-                                                    </a>
+                                                        class="btn btn-danger">Hapus</a>
                                                 </td>
+
                                             </tr>
                                         @endforeach
                                     </tbody>

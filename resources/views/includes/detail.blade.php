@@ -71,7 +71,7 @@
                 <ul>
                     <li><a href="/">Home<br></a></li>
                     <li><a href="/about">About</a></li>
-                    <li class="dropdown"><a href="gallery.html"><span>Gallery</span> <i
+                    <li class="dropdown"><a href="#"><span>Gallery</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             @foreach ($kategori as $item)
@@ -108,19 +108,28 @@
     <main class="main">
         <!-- Page Title -->
         <div class="page-title" data-aos="fade">
-            <section id="hero" class="hero section">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-6 text-center" data-aos="fade-up" data-aos-delay="100">
-                            @if (request()->is('kontak'))
+            @if (request()->is('kontak'))
+                <section id="hero" class="hero section">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6 text-center" data-aos="fade-up" data-aos-delay="100">
                                 <h2>Contact Page</h2>
-                            @elseif (request()->is('about'))
-                                <h2>About Page</h2>
-                            @endif
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section><!-- /Hero Section -->
+                </section><!-- /Hero Section -->
+            @elseif (request()->is('about'))
+                <section id="hero" class="hero section">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6 text-center" data-aos="fade-up" data-aos-delay="100">
+                                <h2>About Page</h2>
+
+                            </div>
+                        </div>
+                    </div>
+                </section><!-- /Hero Section -->
+            @endif
             <nav class="breadcrumbs">
                 <div class="container">
                     <ol>
