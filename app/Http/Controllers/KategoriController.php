@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Foto;
 use App\Models\Kategori;
+use App\Models\User;
 use App\Models\Vidio;
 use Illuminate\Http\Request;
 
@@ -87,10 +88,13 @@ class KategoriController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request, string $id)
     {
         $data = Kategori::find($id);
-        return view('halaman.admin.kategori.edit', compact('data'));
+        return view('halaman.admin.kategori.edit', [
+            'data' => $data,
+            'user' => $request->user()
+        ]);
     }
 
     /**
