@@ -94,7 +94,7 @@ class TambahFotoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request, string $id)
     {
         // Ambil data foto berdasarkan ID
         $foto = Foto::find($id);
@@ -119,7 +119,11 @@ class TambahFotoController extends Controller
             'kategori' => $kategori,
         ];
 
-        return view('halaman.pengguna.tambah-foto.edit', compact('foto', 'kategori'));
+        return view('halaman.pengguna.tambah-foto.edit', [
+            'foto' => $foto,
+            'kategori' => $kategori,
+            'user' => $request->user()
+        ]);
     }
 
     /**

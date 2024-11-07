@@ -95,7 +95,7 @@
                 <ul>
                     <li><a href="/">Home<br></a></li>
                     <li><a href="/about">About</a></li>
-                    <li class="dropdown"><a href="gallery.html"><span>Gallery</span> <i
+                    <li class="dropdown"><a href="#"><span>Gallery</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             @foreach ($kategori as $item)

@@ -50,7 +50,7 @@ class TambahVidioController extends Controller
             'durasi_menit' => 'required|numeric|min:0',
             'durasi_detik' => 'required|numeric|min:0|max:59',
             'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'vidio' => 'required|mimes:mp4,mov,ogg,qt|max:20000',
+            'vidio' => 'required|mimes:mp4,mov,ogg,qt|max:900000',
             'kategori' => 'required|exists:kategori,id',
         ]);
 
@@ -98,6 +98,7 @@ class TambahVidioController extends Controller
 
 
 
+
     /**
      * Display the specified resource.
      */
@@ -114,7 +115,7 @@ class TambahVidioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request, string $id)
     {
         // Ambil data foto berdasarkan ID
         $vidio = Vidio::find($id);
@@ -141,7 +142,11 @@ class TambahVidioController extends Controller
             'vidio' => $vidio,
             'kategori' => $kategori,
         ];
-        return view('halaman.pengguna.tambah-vidio.edit', compact('vidio', 'kategori'));
+        return view('halaman.pengguna.tambah-vidio.edit', [
+            'vidio' => $vidio,
+            'kategori' => $kategori,
+            'user' => $request->user()
+        ]);
     }
 
     /**
