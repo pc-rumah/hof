@@ -5,7 +5,8 @@
                 <h2 id="title" class="mx-auto">Login</h2>
 
                 <!-- Google Login Button -->
-                <button class="btn btn-block btn-primary">Google</button>
+                <a href="{{ url('auth/google') }}" class="btn btn-block btn-primary">Google</a>
+
 
                 <div class="divider">OR</div>
 

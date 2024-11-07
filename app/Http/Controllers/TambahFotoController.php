@@ -43,7 +43,7 @@ class TambahFotoController extends Controller
         $validator = \Validator::make($request->all(), [
             'judul' => 'required|string|max:255',
             'kategori' => 'required|exists:kategori,id',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif',
             'deskripsi' => 'nullable|string|max:500',
         ]);
 

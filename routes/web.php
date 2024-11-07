@@ -8,6 +8,7 @@ use App\Http\Controllers\DetailVidioController;
 use App\Http\Controllers\EditAboutController;
 use App\Http\Controllers\EditKontakController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\LandingPageController;
@@ -31,12 +32,15 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// halaman landing page
-Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
 // Route::get('/kontak', function () {
 //     return view('konten.kontak');
 // });
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
+// halaman landing page
+Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
 Route::get('/kontak', [KontakController::class, 'index'])->name('kontak');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
@@ -49,10 +53,6 @@ Route::get('/vidio/{id}', [DetailVidioController::class, 'show'])->name('detailv
 Route::get('/kategori/{nama_kategori}', [App\Http\Controllers\KategoriController::class, 'filterByCategory'])->name('kategori.filter');
 
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -62,6 +62,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile/update', [ProfileController::class, 'updatephoto'])->name('profile.update.photo');
     Route::delete('/profile/update', [ProfileController::class, 'destroyphoto'])->name('profile.destroy.photo');
 });
+
+// auth Google
+Route::get('/auth/google', [GoogleAuthController::class, 'googleauth']);
+Route::get('/auth/google/callback', [GoogleAuthController::class, 'googlecallback']);
 
 // Route::get('admin', function () {
 //     return '<h1>LOgin admin</h1>';

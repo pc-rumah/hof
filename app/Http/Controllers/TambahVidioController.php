@@ -49,8 +49,8 @@ class TambahVidioController extends Controller
             'deskripsi' => 'required|string',
             'durasi_menit' => 'required|numeric|min:0',
             'durasi_detik' => 'required|numeric|min:0|max:59',
-            'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'vidio' => 'required|mimes:mp4,mov,ogg,qt|max:900000',
+            'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'vidio' => 'required|mimes:mp4,mov,ogg,qt',
             'kategori' => 'required|exists:kategori,id',
         ]);
 
