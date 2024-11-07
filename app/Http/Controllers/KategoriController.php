@@ -69,17 +69,17 @@ class KategoriController extends Controller
             return redirect()->back()->with('error', 'Kategori tidak ditemukan.');
         }
 
-        // Dapatkan gambar berdasarkan kategori
+        // Dapatkan gambar dan vidio berdasarkan kategori
         $gambar = Foto::where('kategori_id', $kategorii->id)->get();
         $vidio = Vidio::where('kategori_id', $kategorii->id)->get();
 
-        if ($gambar->isEmpty()) {
-            // Jika gambar tidak ditemukan, Anda dapat mengembalikan halaman dengan pesan
-            return view('halaman.pengguna.kategori', compact('kategori', 'kategorii'))
-                ->with('message', 'Tidak ada gambar yang ditemukan untuk kategori ini.');
+        // Jika baik gambar maupun vidio tidak ditemukan, kembalikan pesan bahwa konten tidak tersedia
+        if ($gambar->isEmpty() && $vidio->isEmpty()) {
+            return view('halaman.pengguna.kosong', compact('gambar', 'vidio', 'kategori', 'kategorii'))
+                ->with('message', 'Konten tidak tersedia untuk kategori ini.');
         }
 
-        // Kembalikan view dengan data gambar yang difilter
+        // Kembalikan view dengan data gambar dan vidio yang difilter
         return view('halaman.pengguna.kategori', compact('gambar', 'kategori', 'kategorii', 'vidio'));
     }
 

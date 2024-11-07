@@ -39,7 +39,7 @@
                                 <label class="col-sm-2 col-form-label">Kategori</label>
                                 <div class="col-sm-10">
                                     <select class="form-select" name="kategori" aria-label="Default select example">
-                                        <option selected>Pilih Kategori</option>
+                                        <option selected>{{ $foto->kategori->nama_kategori }}</option>
                                         @foreach ($kategori as $item)
                                             <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
                                         @endforeach
@@ -50,6 +50,10 @@
                                 <label for="inputNumber" class="col-sm-2 col-form-label">File Foto</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="foto" type="file" id="formFile">
+                                    @if (isset($foto))
+                                        <img src="{{ asset('/storage/' . $foto->foto) }}" alt="{{ $foto->judul }}"
+                                            class="img-thumbnail mt-2" style="width: 150px;">
+                                    @endif
                                 </div>
                             </div>
                             <div class="row mb-3">
