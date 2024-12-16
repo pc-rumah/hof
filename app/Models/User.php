@@ -34,6 +34,17 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
+    public function foto()
+    {
+        return $this->hasMany(Foto::class);
+    }
+
+    public function vidio()
+    {
+        return $this->hasMany(Vidio::class);
+    }
+
+
     /**
      * The attributes that should be hidden for serialization.
      *

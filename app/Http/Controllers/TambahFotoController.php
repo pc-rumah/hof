@@ -207,7 +207,7 @@ class TambahFotoController extends Controller
         if ($user->id !== $foto->user_id) {
             abort(403, 'Anda tidak memiliki izin untuk menghapus foto ini');
         }
-
+        // dd($foto);
         // Hapus foto dari database
         $foto->delete();
 

@@ -39,7 +39,8 @@
                                 <label class="col-sm-2 col-form-label">Kategori</label>
                                 <div class="col-sm-10">
                                     <select class="form-select" name="kategori" aria-label="Default select example">
-                                        <option selected>Pilih Kategori</option>
+                                        <option value="{{ $vidio->kategori_id }}" selected>
+                                            {{ $vidio->kategori->nama_kategori }}</option>
                                         @foreach ($kategori as $item)
                                             <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
                                         @endforeach

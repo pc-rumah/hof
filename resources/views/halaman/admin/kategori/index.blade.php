@@ -6,7 +6,7 @@
             <h1>Cards</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/pengguna">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
                     <li class="breadcrumb-item active">Kategori</li>
                 </ol>
             </nav>
@@ -19,13 +19,16 @@
                         <!-- Bordered Tabs -->
                         <div class="row">
 
-                            <div class="col-lg-10">
-                                <a href="{{ route('kategori.create') }}" type="button" class="btn btn-primary">Tambah
+                            <div class="col-lg-8">
+                                <a href="{{ route('tambahkategori.create') }}" type="button" class="btn btn-primary">Tambah
                                     Kategori</a>
                             </div>
-                            @if (Session::has('success'))
-                                <div class="alert alert-success">{{ Session::get('success') }}</div>
-                            @endif
+
+                            <div class="col-lg-4">
+                                @if (Session::has('success'))
+                                    <div class="alert alert-success">{{ Session::get('success') }}</div>
+                                @endif
+                            </div>
                         </div>
                         <hr class="hr">
                         <div class="card">
@@ -46,12 +49,50 @@
                                                 <th scope="row">{{ $loop->iteration }}</th>
                                                 <td>{{ $item->nama_kategori }}</td>
                                                 <td>
-                                                    <a href="{{ route('kategori.edit', $item) }}"
+                                                    <a href="{{ route('tambahkategori.edit', $item) }}"
                                                         class="btn btn-primary mb-2">Edit</a>
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('kategori.destroy', $item) }}"
-                                                        class="btn btn-danger">Hapus</a>
+
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                        data-bs-target="#alert-hapus-kategori{{ $item->id }}">Delete</button>
+
+                                                    <!-- Modal delete foto -->
+                                                    @if (isset($item))
+                                                        <div class="modal fade" id="alert-hapus-kategori{{ $item->id }}"
+                                                            tabindex="-1"
+                                                            aria-labelledby="confirmDeleteModal{{ $item->id }}Label"
+                                                            aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title"
+                                                                            id="confirmDeleteModal{{ $item->id }}Label">
+                                                                            Konfirmasi Hapus Kategori</h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Apakah Anda yakin ingin menghapus Kategori
+                                                                        ini?
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary"
+                                                                            data-bs-dismiss="modal">Batal</button>
+                                                                        <form id="deleteForm{{ $item->id }}"
+                                                                            action="{{ route('tambahkategori.destroy', $item->id) }}"
+                                                                            method="POST">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="submit"
+                                                                                class="btn btn-danger">Hapus</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endif
                                                 </td>
 
                                             </tr>

@@ -42,10 +42,21 @@
                             {{ session('error') }}
                         </div>
                     @endif
+                    @if ($errors->updatePassword->any())
+                        <div class="alert alert-danger" role="alert">
+                            <ul>
+                                @foreach ($errors->updatePassword->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     {{-- end bagian pesan session --}}
                 </div>
                 {{-- end bagian card profile --}}
-
+                {{-- @php
+                    dd(session()->all());
+                @endphp --}}
                 <div class="col-xl-8">
                     <div class="card">
                         <div class="card-body pt-3">
@@ -66,6 +77,14 @@
                                     <button class="nav-link" data-bs-toggle="tab"
                                         data-bs-target="#profile-change-password">Change Password</button>
                                 </li>
+
+                                @if (Auth::user()->hasRole('admin'))
+                                @else
+                                    <li class="nav-item">
+                                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#hapus-akun">Delete
+                                            Account</button>
+                                    </li>
+                                @endif
 
                             </ul>
                             <div class="tab-content pt-2">
@@ -108,6 +127,10 @@
                                 {{-- bagian form change password --}}
                                 @include('profile.editform.changepass')
                                 {{-- end form change password --}}
+
+                                {{-- bagian delete akun --}}
+                                @include('profile.editform.deleteakun')
+                                {{-- bagian delete akun --}}
                             </div><!-- End Bordered Tabs -->
                         </div>
                     </div>

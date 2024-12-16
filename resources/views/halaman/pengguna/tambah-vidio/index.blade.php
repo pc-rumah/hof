@@ -18,22 +18,25 @@
                         <div class="col-lg-3">
                             <h3>Halaman Vidio</h3>
                         </div>
-                        <div class="col-lg-9">
+                        <div class="col-lg-6">
                             <a href="{{ route('tambahvidio.create') }}" type="button" class="btn btn-primary">Tambah
                                 Vidio</a>
+                        </div>
+                        <div class="col-lg-3">
+                            @if (session('success') || request()->has('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') ?? request()->get('success') }}
+                                </div>
+                            @endif
+                            @if (Session::has('error'))
+                                <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                            @endif
                         </div>
                         {{-- pesan session --}}
                         {{-- @if (Session::has('success'))
                             <div class="alert alert-success">{{ Session::get('success') }}</div>
                         @endif --}}
-                        @if (session('success') || request()->has('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') ?? request()->get('success') }}
-                            </div>
-                        @endif
-                        @if (Session::has('error'))
-                            <div class="alert alert-danger">{{ Session::get('error') }}</div>
-                        @endif
+
                         {{-- end pesan session --}}
                     </div>
                     <hr class="hr">
@@ -73,7 +76,46 @@
                                                     <div class="col-6 p-1">
                                                         <button type="submit" class="btn btn-danger w-100"
                                                             data-bs-toggle="modal"
-                                                            data-bs-target="#confirmDeletevidio">Delete</button>
+                                                            data-bs-target="#confirmDeletevidio{{ $item->id }}">Delete</button>
+
+                                                        <!-- Modal delete vidio -->
+                                                        @if (isset($item))
+                                                            <div class="modal fade"
+                                                                id="confirmDeletevidio{{ $item->id }}"
+                                                                tabindex="-1"
+                                                                aria-labelledby="confirmDeleteModal{{ $item->id }}Label"
+                                                                aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title"
+                                                                                id="confirmDeleteModal{{ $item->id }}Label">
+                                                                                Konfirmasi
+                                                                                Hapus Vidio</h5>
+                                                                            <button type="button" class="btn-close"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            Apakah Anda yakin ingin menghapus Vidio ini?
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                class="btn btn-secondary"
+                                                                                data-bs-dismiss="modal">Batal</button>
+                                                                            <form id="deleteForm"
+                                                                                action="{{ route('tambahvidio.destroy', $item->id) }}"
+                                                                                method="POST">
+                                                                                @csrf
+                                                                                @method('DELETE')
+                                                                                <button type="submit"
+                                                                                    class="btn btn-danger">Hapus</button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>

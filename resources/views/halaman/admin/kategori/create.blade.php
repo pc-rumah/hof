@@ -5,7 +5,7 @@
             <h1>Dashboard</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('kategori.index') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('tambahkategori.index') }}">Home</a></li>
                     <li class="breadcrumb-item active">Tambah Kategori</li>
                 </ol>
             </nav>
@@ -15,9 +15,10 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{ route('kategori.index') }}" type="button" class="mt-2 btn btn-warning">Back</a>
+                            <a href="{{ route('tambahkategori.index') }}" type="button"
+                                class="mt-2 btn btn-warning">Back</a>
                             <!-- General Form Elements -->
-                            <form action="{{ route('kategori.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('tambahkategori.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row mb-3">
                                     <label for="inputText" class="col-sm-2 col-form-label">Nama Kategori</label>
