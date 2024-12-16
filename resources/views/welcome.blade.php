@@ -146,7 +146,10 @@
                         <h2><span>Post your</span><span class="underlight">Random</span> Content<span>
                                 Right Here</span></h2>
                         <p>You can upload your photos, vidios, and file in this website</p>
-                        <a href="/register" class="btn-get-started">Create Account and Start upload!<br></a>
+                        @if (Auth::check())
+                        @else
+                            <a href="/register" class="btn-get-started">Create Account and Start upload!<br></a>
+                        @endif
                     </div>
                 </div>
             </div>

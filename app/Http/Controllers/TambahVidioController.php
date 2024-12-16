@@ -54,22 +54,33 @@ class TambahVidioController extends Controller
             'kategori' => 'required|exists:kategori,id',
         ]);
 
-        // Handle file upload for thumbnail
         if ($request->hasFile('thumbnail')) {
-
-            $namathumbnail = $request->file('thumbnail')->getClientOriginalName();
-
-            $thumbnailPath = $request->file('thumbnail')->storeAs('thumbnails', $namathumbnail, 'public');
+            // Simpan file thumbnail dengan nama hash secara otomatis
+            $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
         }
+
+        if ($request->hasFile('vidio')) {
+            // Simpan file video dengan nama hash secara otomatis
+            $videoPath = $request->file('vidio')->store('vidios', 'public');
+        }
+
+
+        // Handle file upload for thumbnail
+        // if ($request->hasFile('thumbnail')) {
+
+        // $namathumbnail = $request->file('thumbnail')->getClientOriginalName();
+
+        // $thumbnailPath = $request->file('thumbnail')->storeAs('thumbnails', $namathumbnail, 'public');
+        // }
 
         // Handle file upload for video
-        if ($request->hasFile('vidio')) {
-            // Dapatkan nama asli file video yang diupload
-            $originalVideoName = $request->file('vidio')->getClientOriginalName();
+        // if ($request->hasFile('vidio')) {
+        // Dapatkan nama asli file video yang diupload
+        // $originalVideoName = $request->file('vidio')->getClientOriginalName();
 
-            // Simpan file dengan nama asli ke folder 'vidios' di penyimpanan publik
-            $videoPath = $request->file('vidio')->storeAs('vidios', $originalVideoName, 'public');
-        }
+        // Simpan file dengan nama asli ke folder 'vidios' di penyimpanan publik
+        // $videoPath = $request->file('vidio')->storeAs('vidios', $originalVideoName, 'public');
+        // }
 
 
         // Gabungkan menit dan detik menjadi format yang diinginkan, misalnya dalam detik
@@ -221,7 +232,7 @@ class TambahVidioController extends Controller
         if ($user->id !== $vidio->user_id) {
             abort(403, 'Anda tidak memiliki izin untuk menghapus foto ini');
         }
-
+        // dd($vidio);
         // Hapus foto dari database
         $vidio->delete();
 

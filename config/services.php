@@ -34,7 +34,7 @@ return [
     'google' => [
         'client_id' => '',
         'client_secret' => '',
-        'redirect' => '',
+        'redirect' => 'http://127.0.0.1:8000/auth/google/callback',
     ],
 
 ];

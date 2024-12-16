@@ -81,11 +81,15 @@ class FileController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request, string $id)
     {
         $file = File::findOrFail($id);
         $kategori = KategoriFile::all();
-        return view('halaman.pengguna.tambah-file.edit', compact('file', 'kategori'));
+        return view('halaman.pengguna.tambah-file.edit', [
+            'file' => $file,
+            'kategori' => $kategori,
+            'user' => $request->user()
+        ]);
     }
 
     /**
@@ -148,29 +152,29 @@ class FileController extends Controller
     public function destroy(string $id)
     {
         // Ambil data foto yang akan dihapus
-        $vidio = File::find($id);
+        $file = File::find($id);
         $user = auth()->user();
-        $vidio->user_id = $user->id;
+        $file->user_id = $user->id;
         // Pastikan data foto ditemukan
-        if (!$vidio) {
+        if (!$file) {
             abort(404, 'File tidak ditemukan');
         }
 
         // Authorization: pastikan user yang sedang login adalah pemilik foto
-        if ($user->id !== $vidio->user_id) {
+        if ($user->id !== $file->user_id) {
             abort(403, 'Anda tidak memiliki izin untuk menghapus file ini');
         }
-
+        // dd($file);
         // Hapus foto dari database
-        $vidio->delete();
+        $file->delete();
 
         // Hapus file foto dari storage
-        if ($vidio->thumbnail) {
-            Storage::disk('public')->delete($vidio->thumbnail);
+        if ($file->thumbnail) {
+            Storage::disk('public')->delete($file->thumbnail);
         }
 
-        if ($vidio->file_path) {
-            Storage::disk('public')->delete($vidio->file_path);
+        if ($file->file_path) {
+            Storage::disk('public')->delete($file->file_path);
         }
 
         // Redirect setelah berhasil menghapus

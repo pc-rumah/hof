@@ -97,6 +97,27 @@ class ProfileController extends Controller
 
         Auth::logout();
 
+        // Hapus semua file terkait dari storage
+        foreach ($user->foto as $foto) {
+            if ($foto->path && Storage::exists($foto->path)) {
+                Storage::delete($foto->path); // Menghapus file foto
+            }
+        }
+
+        foreach ($user->vidio as $vidio) {
+            if ($vidio->path && Storage::exists($vidio->path)) {
+                Storage::delete($vidio->path); // Menghapus file video
+            }
+        }
+
+        if ($user->thumbnail && Storage::exists($user->thumbnail)) {
+            Storage::delete($user->thumbnail); // Menghapus thumbnail user
+        }
+
+        // Hapus data terkait di database
+        $user->foto()->delete();
+        $user->vidio()->delete();
+        // hapus user
         $user->delete();
 
         $request->session()->invalidate();

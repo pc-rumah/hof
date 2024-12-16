@@ -46,7 +46,7 @@
 
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('kategori*') ? '' : 'collapsed' }}"
-                    href="{{ route('kategori.index') }}">
+                    href="{{ route('tambahkategori.index') }}">
                     <i class="bi bi-bookmarks"></i>
                     <span>Kategori</span>
                 </a>

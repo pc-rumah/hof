@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Log;
 use App\Models\Foto;
-use App\Models\User;
 use App\Models\Vidio;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 
-class KategoriController extends Controller
+class TambahKategori extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -49,7 +47,7 @@ class KategoriController extends Controller
         Kategori::create([
             'nama_kategori' => $request->nama_kategori,
         ]);
-        return redirect()->route('kategori.index')->with('success', 'Kategori Berhasil Ditambahkan');
+        return redirect()->route('tambahkategori.index')->with('success', 'Kategori Berhasil Ditambahkan');
     }
 
     /**
@@ -84,8 +82,6 @@ class KategoriController extends Controller
         return view('halaman.pengguna.kategori', compact('gambar', 'kategori', 'kategorii', 'vidio'));
     }
 
-
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -111,7 +107,7 @@ class KategoriController extends Controller
         Kategori::where('id', $id)->update([
             'nama_kategori' => $request->nama_kategori,
         ]);
-        return redirect()->route('kategori.index')->with('success', 'Kategori Berhasil Diubah');
+        return redirect()->route('tambahkategori.index')->with('success', 'Kategori Berhasil Diubah');
     }
 
     /**
@@ -122,11 +118,11 @@ class KategoriController extends Controller
         $kategori = Kategori::find($id);
 
         if (!$kategori) {
-            return redirect()->route('kategori.index')->with('error', 'Kategori Tidak diTemukan');
+            return redirect()->route('tambahkategori.index')->with('error', 'Kategori Tidak diTemukan');
         }
 
         $kategori->delete();
 
-        return redirect()->route('kategori.index')->with('success', 'Berhasil Menghapus Kategori');
+        return redirect()->route('tambahkategori.index')->with('success', 'Berhasil Menghapus Kategori');
     }
 }

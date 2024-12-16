@@ -14,6 +14,7 @@ use App\Http\Controllers\KontakController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TambahFotoController;
+use App\Http\Controllers\TambahKategori;
 use App\Http\Controllers\TambahVidioController;
 use App\Http\Controllers\TampilFileController;
 use App\Http\Controllers\TampilFotoController;
@@ -82,7 +83,8 @@ Route::get('/auth/google/callback', [GoogleAuthController::class, 'googlecallbac
 // bagian admin
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.index');
-    Route::resource('/kategori', KategoriController::class);
+    // Route::resource('/kategori', KategoriController::class);
+    Route::resource('/tambahkategori', TambahKategori::class);
     Route::resource('/editkontak', EditKontakController::class);
     Route::resource('/editabout', EditAboutController::class);
 

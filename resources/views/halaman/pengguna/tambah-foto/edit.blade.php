@@ -18,9 +18,16 @@
                             <div class="col-lg-2 mt-2">
                                 <h3>Halaman Edit</h3>
                             </div>
-                            <div class="col-lg-10">
+                            <div class="col-lg-6">
                                 <a href="{{ route('tambahfoto.index') }}" type="button"
                                     class="mt-2 btn btn-warning">Back</a>
+                            </div>
+                            <div class="col-lg-4 mt-2">
+                                @if ($errors->any())
+                                    @foreach ($errors->all() as $error)
+                                        <div class="alert alert-danger">{{ $error }}</div>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                         <!-- General Form Elements -->
@@ -39,7 +46,8 @@
                                 <label class="col-sm-2 col-form-label">Kategori</label>
                                 <div class="col-sm-10">
                                     <select class="form-select" name="kategori" aria-label="Default select example">
-                                        <option selected>{{ $foto->kategori->nama_kategori }}</option>
+                                        <option value="{{ $foto->kategori_id }}" selected>
+                                            {{ $foto->kategori->nama_kategori }}</option>
                                         @foreach ($kategori as $item)
                                             <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
                                         @endforeach
@@ -69,11 +77,7 @@
                                 </div>
                             </div>
                         </form><!-- End General Form Elements -->
-                        @if ($errors->any())
-                            @foreach ($errors->all() as $error)
-                                <div class="alert alert-danger">{{ $error }}</div>
-                            @endforeach
-                        @endif
+
                     </div>
                 </div>
             </div>
