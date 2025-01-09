@@ -53,14 +53,15 @@ class FileController extends Controller
         $file->kategori_file_id = $request->input('kategori');
         $file->deskripsi = $request->input('deskripsi');
 
-        if ($request->hasFile('thumbnail')) {
-            $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
-            $file->thumbnail = $thumbnailPath;
-        }
-
         if ($request->hasFile('file')) {
             $filePath = $request->file('file')->store('files', 'public');
             $file->file_path = $filePath;
+            $file->size = $request->file('file')->getSize(); // Ambil ukuran file
+        }
+
+        if ($request->hasFile('thumbnail')) {
+            $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+            $file->thumbnail = $thumbnailPath;
         }
 
         $file->save();
@@ -68,11 +69,6 @@ class FileController extends Controller
         return response()->json(['success' => true, 'message' => 'File berhasil ditambahkan']);
     }
 
-
-
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //

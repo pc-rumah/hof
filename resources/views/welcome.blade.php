@@ -29,13 +29,6 @@
     <!-- Main CSS File -->
     <link href="{{ asset('landing-page/assets/css/main.css') }}" rel="stylesheet">
 
-    <!-- =======================================================
-  * Template Name: PhotoFolio
-  * Template URL: https://bootstrapmade.com/photofolio-bootstrap-photography-website-template/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
     <style>
         .gallery .gallery-item {
             width: 100%;
@@ -85,11 +78,9 @@
 <body class="index-page">
 
     <header id="header" class="header d-flex align-items-center sticky-top">
-        <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
+        <div class="container-fluid position-relative d-flex align-items-center">
 
             <a href="#" class="logo d-flex align-items-center me-auto me-xl-0">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="assets/img/logo.png" alt=""> -->
                 <i class="bi bi-camera"></i>
                 <h1 class="sitename">HEHE</h1>
             </a>
@@ -98,17 +89,16 @@
                 <ul>
                     <li><a href="/" class="active">Home<br></a></li>
                     <li><a href="/about">About</a></li>
+                    <li><a href="/filesearch">File</a></li>
                     <li class="dropdown"><a href="#"><span>Gallery</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
-
                             @foreach ($kategori as $item)
                                 <li>
                                     <a
                                         href="{{ route('kategori.filter', $item->nama_kategori) }}">{{ $item->nama_kategori }}</a>
                                 </li>
                             @endforeach
-
                         </ul>
                     </li>
                     <li><a href="/kontak">Contact</a></li>
@@ -128,16 +118,10 @@
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
-
-            <div class="header-social-links">
-
-            </div>
-
         </div>
     </header>
 
     <main class="main">
-
         <!-- Hero Section -->
         <section id="hero" class="hero section">
             <div class="container">
@@ -217,11 +201,7 @@
                         Reserved</span></p>
             </div>
             <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you've purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                Designed by <a href="#">Hehe</a>
             </div>
         </div>
     </footer>

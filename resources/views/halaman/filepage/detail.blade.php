@@ -12,6 +12,9 @@
     <link href="{{ asset('landing-page/assets/img/favicon.png') }}" rel="icon">
     <link href="{{ asset('landing-page/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -59,6 +62,18 @@
                 height: 80%;
             }
         }
+
+        #cardfile {
+            width: 100%;
+            height: 80%;
+        }
+
+        @media (max-width: 1300px) {
+            #cardfile {
+                width: 100%;
+                height: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -102,36 +117,63 @@
             </nav>
         </div>
     </header>
+    <!-- konten -->
+    <div class=""
+        style="background-image: url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp);">
+        <div class="container mx-auto px-4 py-2">
+            <div class="flex justify-center items-center">
+                <div class="w96 bg-gray-300 rounded-lg p-4 py-2 text-zinc-100 rounded-t-lg">
+                    <!-- header -->
+                    <div class="bg-blue-500 py-2 rounded-lg">
+                        <h1 class="text-lg mx-4">Waktu Upload: {{ $file->created_at->format('d-m-y') }}</h1>
+                    </div>
+                    <!-- header -->
 
-    <main class="main">
-        <!-- Page Title -->
-        <div class="page-title" data-aos="fade">
-            @if (request()->is('kontak'))
-                <section id="hero" class="">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class=" text-center" data-aos="fade-up" data-aos-delay="100">
-                                <h2>Contact Page</h2>
-                            </div>
-                        </div>
+                    <!-- nama file -->
+                    <div class="text-gray-800 text-2xl text-center font-bold mt-2 py-2">
+                        {{ $file->judul }}
                     </div>
-                </section><!-- /Hero Section -->
-            @elseif (request()->is('about'))
-                <section id="hero" class="">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class=" text-center" data-aos="fade-up" data-aos-delay="100">
-                                <h2>About Page</h2>
-                            </div>
-                        </div>
+                    <!-- nama file -->
+
+                    <!-- divider -->
+                    <div class="border-t border-gray-500 "></div>
+                    <!-- divider -->
+
+                    <!-- nama file -->
+                    <div class="text-center font-bold mt-2 py-2">
+                        <h5 class="text-zinc-800">{{ $file->created_at->format('d-m-y') }}</h5>
                     </div>
-                </section><!-- /Hero Section -->
-            @endif
-        </div><!-- End Page Title -->
-        {{-- content --}}
-        @yield('content')
-        {{-- content --}}
-    </main>
+                    <!-- nama file -->
+
+                    <!-- gambar file -->
+                    <div class="mt-4">
+                        <img class="w-96 h-80" src="{{ asset('/storage/' . $file->thumbnail) }}"
+                            alt="{{ $file->judul }}" srcset="">
+                    </div>
+                    <!-- gambar file -->
+
+                    <div>
+                        <!-- detail file -->
+                        <div class="mt-4 text-gray-800 text-sm">
+                            <p><Strong>Title:</Strong> {{ $file->judul }}</p>
+                            <p><Strong>Kategori:</Strong> {{ $file->kategorifile->nama_kategori_file }}</p>
+                            <p><Strong>Uploader:</Strong> {{ $file->user->name }}</p>
+                            <p><Strong>Size:</Strong> {{ number_format($file->size / 1048576, 2) }} MB</p>
+                        </div>
+                        <!-- detail file -->
+
+                        <!-- tombol download -->
+                        <div class="mt4 flex justify-end">
+                            <button class="bg-green-500 font-bold rounded-lg text-white py-2 px-4">Download</button>
+                        </div>
+                        <!-- tombol download -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- konten -->
+
     {{-- @include('includes.footerdetail') --}}
     <!-- Scroll Top -->
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
@@ -152,3 +194,5 @@
     <!-- Main JS File -->
     <script src="{{ asset('landing-page/assets/js/main.js') }}"></script>
 </body>
+
+</html>
