@@ -8,6 +8,7 @@ use App\Http\Controllers\DetailVidioController;
 use App\Http\Controllers\EditAboutController;
 use App\Http\Controllers\EditKontakController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\FilePage;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KontakController;
@@ -44,6 +45,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
 Route::get('/kontak', [KontakController::class, 'index'])->name('kontak');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
+// Route::resource('/filesearch', FilePage::class);
+Route::get('/filesearch', [FilePage::class, 'index'])->name('filesearch');
+Route::get('/detailfile/{id}', [FilePage::class, 'detail'])->name('detailfile');
 
 
 // halaman detail foto
@@ -68,18 +72,6 @@ Route::middleware('auth')->group(function () {
 Route::get('/auth/google', [GoogleAuthController::class, 'googleauth']);
 Route::get('/auth/google/callback', [GoogleAuthController::class, 'googlecallback']);
 
-// Route::get('admin', function () {
-//     return '<h1>LOgin admin</h1>';
-// })->middleware(['auth', 'verified', 'role:admin']);
-// Route::get('pengguna', function () {
-//     return '<h1>LOgin pengguna</h1>';
-// })->middleware(['auth', 'verified', 'role:pengguna']);
-// Route::get('kelola', function () {
-//     return '<h1>LOgin kelola</h1>';
-// })->middleware(['auth', 'verified', 'role_or_permission:tambah-file|admin']);
-
-
-
 // bagian admin
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.index');
@@ -94,7 +86,6 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::resource('/mfoto', TampilFotoController::class);
     Route::resource('mvidio', TampilVidioController::class);
 });
-
 
 // bagian pengguna
 Route::middleware(['auth', 'verified', 'role:pengguna'])->group(function () {

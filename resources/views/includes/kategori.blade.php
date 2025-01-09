@@ -71,22 +71,13 @@
             display: flex;
         }
     </style>
-    <!-- =======================================================
-  * Template Name: PhotoFolio
-  * Template URL: https://bootstrapmade.com/photofolio-bootstrap-photography-website-template/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
-<body class="gallery-single-page">
+<body class="gallery-single-page flex h-100">
     <header id="header" class="header d-flex align-items-center sticky-top">
-        <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
+        <div class="container-fluid position-relative d-flex align-items-center">
 
             <a href="/" class="logo d-flex align-items-center me-auto me-xl-0">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
-                {{-- <img src="{{ asset('landing-page/assets/img/logo.png') }}" alt=""> --}}
                 <i class="bi bi-camera"></i>
                 <h1 class="sitename">Hehe</h1>
             </a>
@@ -95,8 +86,8 @@
                 <ul>
                     <li><a href="/">Home<br></a></li>
                     <li><a href="/about">About</a></li>
-                    <li class="dropdown"><a href="#"><span>Gallery</span> <i
-                                class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <li class="dropdown"><a href="#"><span>Gallery</span>
+                            <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             @foreach ($kategori as $item)
                                 <li>
@@ -105,7 +96,6 @@
                                 </li>
                             @endforeach
                         </ul>
-
                     </li>
                     <li><a href="/kontak">Contact</a></li>
                     {{-- tombol dashboard dan login --}}
@@ -131,32 +121,22 @@
     <main class="main">
         <!-- Page Title -->
         <div class="page-title" data-aos="fade">
-            <section id="hero" class="hero section">
+            <section id="hero" class="">
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-lg-6 text-center" data-aos="fade-up" data-aos-delay="100">
+                        <div class="text-center" data-aos="fade-up" data-aos-delay="100">
                             <h2>Kategori: {{ $kategorii->nama_kategori }}</h2>
                         </div>
                     </div>
                 </div>
             </section><!-- /Hero Section -->
-            <nav class="breadcrumbs">
-                <div class="container">
-                    <ol>
-                        <li><a href="/">Home</a></li>
-                        <li class="#">{{ $kategorii->nama_kategori }}</li>
-                    </ol>
-                </div>
-            </nav>
         </div><!-- End Page Title -->
 
         {{-- content --}}
         @yield('content')
         {{-- content --}}
     </main>
-
-
-    @include('includes.footerdetail')
+    {{-- @include('includes.footerdetail') --}}
 
     <!-- Scroll Top -->
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i

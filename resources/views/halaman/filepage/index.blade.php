@@ -12,6 +12,9 @@
     <link href="{{ asset('landing-page/assets/img/favicon.png') }}" rel="icon">
     <link href="{{ asset('landing-page/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -59,6 +62,18 @@
                 height: 80%;
             }
         }
+
+        #cardfile {
+            width: 100%;
+            height: 80%;
+        }
+
+        @media (max-width: 1300px) {
+            #cardfile {
+                width: 100%;
+                height: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -102,36 +117,36 @@
             </nav>
         </div>
     </header>
+    <!-- konten -->
+    <div class="bg-no-repeat bg-cover"
+        style="background-image: url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp);">
+        <div class="container mx-auto px-4 py-2">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                @foreach ($file as $item)
+                    <div id="cardfile"
+                        class="card card-compact bg-gradient-to-r from-indigo-300 to-pink-300 shadow-xl">
+                        <figure class="">
+                            <img class="rounded-xl object-contain object-center"
+                                src="{{ asset('/storage/' . $item->thumbnail) }}" alt="Gambar File" />
+                        </figure>
+                        <div class="card-body">
+                            <h5 class="text-sm text-zinc-900"></h5>
+                            <h2 class="card-title text-black">
+                                {{ $item->judul }}
+                            </h2>
+                            <div class="card-actions justify-center">
+                                <a href="{{ route('detailfile', ['id' => $item->id]) }}"
+                                    class="btn btn-info">Detail</a>
+                                <a class="btn btn-success">Download</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    <!-- konten -->
 
-    <main class="main">
-        <!-- Page Title -->
-        <div class="page-title" data-aos="fade">
-            @if (request()->is('kontak'))
-                <section id="hero" class="">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class=" text-center" data-aos="fade-up" data-aos-delay="100">
-                                <h2>Contact Page</h2>
-                            </div>
-                        </div>
-                    </div>
-                </section><!-- /Hero Section -->
-            @elseif (request()->is('about'))
-                <section id="hero" class="">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class=" text-center" data-aos="fade-up" data-aos-delay="100">
-                                <h2>About Page</h2>
-                            </div>
-                        </div>
-                    </div>
-                </section><!-- /Hero Section -->
-            @endif
-        </div><!-- End Page Title -->
-        {{-- content --}}
-        @yield('content')
-        {{-- content --}}
-    </main>
     {{-- @include('includes.footerdetail') --}}
     <!-- Scroll Top -->
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
@@ -152,3 +167,5 @@
     <!-- Main JS File -->
     <script src="{{ asset('landing-page/assets/js/main.js') }}"></script>
 </body>
+
+</html>
