@@ -193,7 +193,8 @@
                         window.location.href = '{{ route('tambahfoto.index') }}?success=' +
                             encodeURIComponent('Foto berhasil ditambahkan');
                     } else {
-                        alert('Upload gagal!');
+                        window.location.href = '{{ route('tambahfoto.index') }}?error=' +
+                            encodeURIComponent('Upload Foto Gagal!');
                     }
                 });
 
@@ -249,7 +250,8 @@
                         window.location.href = '{{ route('tambahvidio.index') }}?success=' +
                             encodeURIComponent('Vidio berhasil ditambahkan');
                     } else {
-                        alert('Upload gagal!');
+                        window.location.href = '{{ route('tambahvidio.index') }}?error=' +
+                            encodeURIComponent('Upload Vidio gagal!');
                     }
                 });
 
@@ -306,7 +308,9 @@
                             encodeURIComponent(
                                 'File berhasil ditambahkan');
                     } else {
-                        alert('Upload gagal!');
+                        window.location.href = '{{ route('tambahfile.index') }}?error=' +
+                            encodeURIComponent(
+                                'Upload File Gagal!');
                     }
                 });
 

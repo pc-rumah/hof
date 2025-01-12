@@ -4,13 +4,16 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Gallery Single</title>
+    <title>List-File</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
 
     <!-- Favicons -->
     <link href="{{ asset('landing-page/assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('landing-page/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('landing-page/assets/img/apple-touch-icons.png') }}" rel="apple-touch-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -29,66 +32,58 @@
     <!-- Main CSS File -->
     <link href="{{ asset('landing-page/assets/css/main.css') }}" rel="stylesheet">
     <style>
-        .gallery .gallery-item {
-            width: 100%;
-            height: 350px;
-            /* Set a fixed height for uniformity */
-            overflow: hidden;
-            position: relative;
-            background-color: #000;
-            /* Optional: background color for fallback */
+        #card {
+            flex-direction: row;
         }
 
-        .gallery .gallery-item img {
-            width: 100%;
-            height: 120%;
-            object-fit: cover;
-            /* Ensures the image covers the entire container without distortion */
-            position: absolute;
-            top: 0;
-            left: 0;
+        @media (max-width: 1024px) {
+            #card {
+                flex-direction: column;
+            }
         }
 
-        .gallery .swiper-container {
-            padding-bottom: 20px;
-            /* Adjust padding as needed */
+        #card-body {
+            width: 20rem;
+            height: 20rem;
         }
 
-        .gallery .swiper-slide {
+        @media (max-width: 1024xp) {
+            #card-body {
+                width: auto;
+                height: auto;
+            }
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
         }
 
-        .gallery .gallery-links {
-            position: absolute;
-            /* bottom: 10px; */
-            /* right: 10px; */
-            display: none;
-        }
-
-        .gallery .gallery-item:hover .gallery-links {
-            display: flex;
+        .btn {
+            display: inherit;
         }
     </style>
 </head>
 
-<body class="gallery-single-page flex h-100">
-    <header id="header" class="header d-flex align-items-center sticky-top">
-        <div class="container-fluid position-relative d-flex align-items-center">
+<body class="gallery-single-page"
+    style="background-image: url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp);">
 
+    <header id="header" class="header d-flex align-items-center sticky-top">
+        <div class="container-fluid position-relative d-flex align-items-center ">
             <a href="/" class="logo d-flex align-items-center me-auto me-xl-0">
                 <i class="bi bi-camera"></i>
                 <h1 class="sitename">Hehe</h1>
             </a>
-
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a href="/">Home<br></a></li>
                     <li><a href="/about">About</a></li>
-                    <li><a href="/filesearch"><span>File</span>
-                    <li class="dropdown"><a href="#"><span>Gallery</span>
-                            <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <li><a href="/filesearch">File</a></li>
+                    <li class="dropdown"><a href=""><span>Gallery</span> <i
+                                class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             @foreach ($kategori as $item)
                                 <li>
@@ -113,31 +108,19 @@
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
-
-            <div class="header-social-links">
-            </div>
         </div>
     </header>
 
-    <main class="main">
-        <!-- Page Title -->
-        <div class="page-title" data-aos="fade">
-            <section id="hero" class="">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-                            <h2>Kategori: {{ $kategorii->nama_kategori }}</h2>
-                        </div>
-                    </div>
-                </div>
-            </section><!-- /Hero Section -->
-        </div><!-- End Page Title -->
+    @yield('content')
 
-        {{-- content --}}
-        @yield('content')
-        {{-- content --}}
-    </main>
-    {{-- @include('includes.footerdetail') --}}
+    <footer id="footer" class="footer footer-center bg-slate-600">
+        <div class="container">
+            <div class="copyright">
+                <p>© <span>Copyright</span> <strong class="px-1 sitename">PhotoFolio</strong> <span>All Rights
+                        Reserved</span></p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Scroll Top -->
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
@@ -157,42 +140,6 @@
 
     <!-- Main JS File -->
     <script src="{{ asset('landing-page/assets/js/main.js') }}"></script>
-
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script>
-        var swiper = new Swiper('.swiper-container', {
-            slidesPerView: 4, // Sesuaikan jumlah slide yang ingin ditampilkan
-            spaceBetween: 10,
-            loop: true,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            mousewheel: {
-                invert: true,
-            },
-            breakpoints: {
-                0: {
-                    slidesPerView: 1,
-                    spaceBetween: 10,
-                },
-                600: {
-                    slidesPerView: 2,
-                    spaceBetween: 10,
-                },
-                960: {
-                    slidesPerView: 3,
-                    spaceBetween: 10,
-                },
-                1200: {
-                    slidesPerView: 4,
-                    spaceBetween: 10,
-                },
-            }
-        });
-    </script>
 </body>
+
+</html>

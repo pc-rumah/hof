@@ -59,6 +59,14 @@
                 height: 80%;
             }
         }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
     </style>
 </head>
 
@@ -127,12 +135,21 @@
                     </div>
                 </section><!-- /Hero Section -->
             @endif
-        </div><!-- End Page Title -->
+        </div>
+        <!-- End Page Title -->
         {{-- content --}}
         @yield('content')
         {{-- content --}}
     </main>
-    {{-- @include('includes.footerdetail') --}}
+
+    <footer id="footer" class="footer bg-slate-600">
+        <div class="container">
+            <div class="copyright">
+                <p>© <span>Copyright</span> <strong class="px-1 sitename">PhotoFolio</strong> <span>All Rights
+                        Reserved</span></p>
+            </div>
+        </div>
+    </footer>
     <!-- Scroll Top -->
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>

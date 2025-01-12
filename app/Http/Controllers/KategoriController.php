@@ -84,11 +84,6 @@ class KategoriController extends Controller
         return view('halaman.pengguna.kategori', compact('gambar', 'kategori', 'kategorii', 'vidio'));
     }
 
-
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Request $request, string $id)
     {
         $data = Kategori::find($id);
@@ -98,9 +93,6 @@ class KategoriController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $request->validate(
@@ -114,9 +106,6 @@ class KategoriController extends Controller
         return redirect()->route('kategori.index')->with('success', 'Kategori Berhasil Diubah');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $kategori = Kategori::find($id);

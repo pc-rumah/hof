@@ -3,17 +3,15 @@
 @section('content')
     <!-- Gallery Details Section -->
     <section id="gallery-details" class="gallery-details section">
-
         <div class="container" data-aos="fade-up">
-            <div class="portfolio-details-slider swiper init-swiper">
-                <div class="video-container">
+            <div class="d-flex">
+                <div class="video-container w-50 h-50 justify-content-center">
                     <video controls>
                         <source src="{{ URL::asset("/storage/$vidio->video") }}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
             </div>
-
             <div class="row justify-content-between gy-4 mt-4">
                 <div class="col-lg-8" data-aos="fade-up">
                     <div class="portfolio-description">

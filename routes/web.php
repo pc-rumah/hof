@@ -1,45 +1,29 @@
 <?php
 
-use App\Http\Controllers\AboutController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DashboardUserController;
-use App\Http\Controllers\DetailFotoController;
-use App\Http\Controllers\DetailVidioController;
-use App\Http\Controllers\EditAboutController;
-use App\Http\Controllers\EditKontakController;
-use App\Http\Controllers\FileController;
+use App\Models\File;
 use App\Http\Controllers\FilePage;
-use App\Http\Controllers\GoogleAuthController;
-use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\KontakController;
-use App\Http\Controllers\LandingPageController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TambahFotoController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\TambahKategori;
-use App\Http\Controllers\TambahVidioController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\KontakController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EditAboutController;
+use App\Http\Controllers\DetailFotoController;
+use App\Http\Controllers\EditKontakController;
+use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\TambahFotoController;
 use App\Http\Controllers\TampilFileController;
 use App\Http\Controllers\TampilFotoController;
 use App\Http\Controllers\TampilUserController;
+use App\Http\Controllers\DetailVidioController;
+use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\TambahVidioController;
 use App\Http\Controllers\TampilVidioController;
-use App\Models\File;
-use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-// Route::get('/kontak', function () {
-//     return view('konten.kontak');
-// });
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+use App\Http\Controllers\DashboardUserController;
 
 // halaman landing page
 Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
@@ -49,6 +33,17 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/filesearch', [FilePage::class, 'index'])->name('filesearch');
 Route::get('/detailfile/{id}', [FilePage::class, 'detail'])->name('detailfile');
 
+//route download file
+Route::get('/download/{id}', function ($id) {
+    $file = File::findOrFail($id);
+
+    // Cek apakah file ada di storage
+    if (Storage::disk('public')->exists($file->file_path)) {
+        return Storage::disk('public')->download($file->file_path, $file->nama_asli);
+    } else {
+        abort(404, 'File not found.');
+    }
+});
 
 // halaman detail foto
 Route::get('/foto/{id}', [DetailFotoController::class, 'show'])->name('detailfoto');
@@ -75,7 +70,6 @@ Route::get('/auth/google/callback', [GoogleAuthController::class, 'googlecallbac
 // bagian admin
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.index');
-    // Route::resource('/kategori', KategoriController::class);
     Route::resource('/tambahkategori', TambahKategori::class);
     Route::resource('/editkontak', EditKontakController::class);
     Route::resource('/editabout', EditAboutController::class);

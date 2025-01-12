@@ -54,9 +54,12 @@ class FileController extends Controller
         $file->deskripsi = $request->input('deskripsi');
 
         if ($request->hasFile('file')) {
-            $filePath = $request->file('file')->store('files', 'public');
-            $file->file_path = $filePath;
-            $file->size = $request->file('file')->getSize(); // Ambil ukuran file
+            $uploadedFile = $request->file('file');
+            $filePath = $uploadedFile->store('files', 'public');
+
+            $file->file_path = $filePath; // Path file yang di-hash
+            $file->nama_asli = $uploadedFile->getClientOriginalName(); // Simpan nama asli
+            $file->size = $uploadedFile->getSize(); // Simpan ukuran file
         }
 
         if ($request->hasFile('thumbnail')) {

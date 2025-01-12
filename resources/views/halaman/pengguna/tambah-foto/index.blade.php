@@ -25,14 +25,16 @@
                                 <a href="{{ route('tambahfoto.create') }}" type="button" class="btn btn-primary">Tambah
                                     Foto</a>
                             </div>
-                            {{-- @if (Session::has('success'))
-                                <div class="alert alert-success">{{ Session::get('success') }}</div>
-                            @endif --}}
 
                             <div class="col-lg-3">
                                 @if (session('success') || request()->has('success'))
                                     <div class="alert alert-success">
                                         {{ session('success') ?? request()->get('success') }}
+                                    </div>
+                                @endif
+                                @if (session('error'))
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ session('error') }}
                                     </div>
                                 @endif
                             </div>

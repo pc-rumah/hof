@@ -15,6 +15,10 @@ class TambahFotoController extends Controller
      */
     public function index(Request $request)
     {
+        if ($request->has('error')) {
+            session()->flash('error', $request->query('error'));
+        }
+
         $data = Foto::where('user_id', Auth::id())->get();
         return view('halaman.pengguna.tambah-foto.index', [
             'data' => $data,
