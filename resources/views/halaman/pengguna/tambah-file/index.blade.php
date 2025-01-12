@@ -35,9 +35,6 @@
                                     <div class="alert alert-danger">{{ Session::get('error') }}</div>
                                 @endif
                             </div>
-                            {{-- @if (Session::has('success'))
-                                <div class="alert alert-success">{{ Session::get('success') }}</div>
-                            @endif --}}
 
                         </div>
                         <hr class="hr">
@@ -111,13 +108,11 @@
                                                 </div>
                                             </div>
                                             <!-- End Card with titles, buttons, and links -->
-
                                         </div>
                                     @endforeach
                                 </div>
                             </section>
                         </div><!-- End Bordered Tabs -->
-
                     </div>
                 </div>
             </div>

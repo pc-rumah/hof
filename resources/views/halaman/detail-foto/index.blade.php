@@ -7,8 +7,8 @@
         <div class="container" data-aos="fade-up">
             <div class="portfolio-details-slider swiper init-swiper">
 
-                <div class="swiper-wrapper align-items-center">
-                    <img src="{{ asset('/storage/' . $foto->foto) }}" alt="{{ $foto->judul }}">
+                <div class="swiper-wrapper d-flex justify-content-center">
+                    <img class="w-50 h-50" src="{{ asset('/storage/' . $foto->foto) }}" alt="{{ $foto->judul }}">
                 </div>
             </div>
             <div class="row justify-content-between gy-4 mt-4">
@@ -33,4 +33,12 @@
             </div>
         </div>
     </section><!-- /Gallery Details Section -->
+    <footer id="footer" class="footer footer-center bg-slate-600">
+        <div class="container">
+            <div class="copyright">
+                <p>© <span>Copyright</span> <strong class="px-1 sitename">PhotoFolio</strong> <span>All Rights
+                        Reserved</span></p>
+            </div>
+        </div>
+    </footer>
 @endsection

@@ -18,6 +18,7 @@ class File extends Model
         'kategori_file_id',
         'thumbnail',
         'file_path',
+        'nama_asli',
         'deskripsi',
         'size',
     ];

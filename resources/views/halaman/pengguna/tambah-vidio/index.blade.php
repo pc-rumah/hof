@@ -32,11 +32,6 @@
                                 <div class="alert alert-danger">{{ Session::get('error') }}</div>
                             @endif
                         </div>
-                        {{-- pesan session --}}
-                        {{-- @if (Session::has('success'))
-                            <div class="alert alert-success">{{ Session::get('success') }}</div>
-                        @endif --}}
-
                         {{-- end pesan session --}}
                     </div>
                     <hr class="hr">
