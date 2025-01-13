@@ -6,7 +6,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('tambahfile.index') }}">Home</a></li>
-                    <li class="breadcrumb-item active">File Anda</li>
+                    <li class="breadcrumb-item active">Tambah File</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->

@@ -33,12 +33,4 @@
             </div>
         </div>
     </section><!-- /Gallery Details Section -->
-    <footer id="footer" class="footer footer-center bg-slate-600">
-        <div class="container">
-            <div class="copyright">
-                <p>© <span>Copyright</span> <strong class="px-1 sitename">PhotoFolio</strong> <span>All Rights
-                        Reserved</span></p>
-            </div>
-        </div>
-    </footer>
 @endsection

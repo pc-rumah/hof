@@ -5,7 +5,7 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('tambahfoto.index') }}">Home</a></li>
-                <li class="breadcrumb-item active">Vidio Anda</li>
+                <li class="breadcrumb-item active">Edit Vidio</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
