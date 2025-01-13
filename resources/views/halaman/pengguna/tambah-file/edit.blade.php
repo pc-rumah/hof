@@ -6,7 +6,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('tambahfile.index') }}">Home</a></li>
-                    <li class="breadcrumb-item active">File Anda</li>
+                    <li class="breadcrumb-item active">Edit File</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -40,7 +40,9 @@
                                     <label class="col-sm-2 col-form-label">Kategori</label>
                                     <div class="col-sm-10">
                                         <select class="form-select" name="kategori" aria-label="Default select example">
-                                            <option selected>Pilih Kategori</option>
+                                            <option value="{{ $file->kategori_id }}" selected>
+                                                {{ $file->kategorifile->nama_kategori_file }}</option>
+                                            </option>
                                             @foreach ($kategori as $item)
                                                 <option value="{{ $item->id }}">
                                                     {{ $item->nama_kategori_file }}</option>
@@ -52,6 +54,10 @@
                                     <label for="inputNumber" class="col-sm-2 col-form-label">Thumbnail</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" name="thumbnail" type="file" id="formFile">
+                                        @if (isset($file))
+                                            <img src="{{ asset('/storage/' . $file->thumbnail) }}" alt="{{ $file->judul }}"
+                                                class="img-thumbnail mt-2" style="width: 150px;">
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="row mb-3">

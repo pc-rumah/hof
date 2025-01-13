@@ -23,7 +23,6 @@
     <link href="{{ asset('landing-page/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('landing-page/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('landing-page/assets/vendor/aos/aos.css') }}" rel="stylesheet">
-    <link href="{{ asset('landing-page/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('landing-page/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
     <!-- Main CSS File -->
@@ -127,7 +126,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6 text-center" data-aos="fade-up" data-aos-delay="100">
-                        <h2><span>Post your</span><span class="underlight">Random</span> Content<span>
+                        <h2><span>Post your</span><span style="color: lightblue;"> Random</span> Content<span>
                                 Right Here</span></h2>
                         <p>You can upload your photos, vidios, and file in this website</p>
                         @if (Auth::check())
@@ -176,8 +175,8 @@
                                     <img src="{{ asset('/storage/' . $item->thumbnail) }}" alt="{{ $item->judul }}"
                                         class="img-fluid">
                                     <div class="gallery-links d-flex align-items-center justify-content-center">
-                                        <a href="{{ asset('/storage/' . $item->video) }}"
-                                            title="{{ $item->judul }}" class="glightbox preview-link">
+                                        <a href="{{ asset('/storage/' . $item->video) }}" title="{{ $item->judul }}"
+                                            class="glightbox preview-link">
                                             <i class="bi bi-arrows-angle-expand"></i>
                                         </a>
                                         <a href="{{ route('detailvidio', ['id' => $item->id]) }}"
@@ -216,11 +215,10 @@
     </div>
 
     <!-- Vendor JS Files -->
-    <script src="{{ asset('landing-page/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    {{-- <script src="{{ asset('landing-page/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script> --}}
     <script src="{{ asset('landing-page/assets/vendor/php-email-form/validate.js') }}"></script>
     <script src="{{ asset('landing-page/assets/vendor/aos/aos.js') }}"></script>
-    <script src="{{ asset('landing-page/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('landing-page/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    {{-- <script src="{{ asset('landing-page/assets/vendor/swiper/swiper-bundle.min.js') }}"></script> --}}
 
     <!-- Main JS File -->
     <script src="{{ asset('landing-page/assets/js/main.js') }}"></script>
